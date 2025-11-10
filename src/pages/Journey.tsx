@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaShip, FaRoute, FaGlobeAmericas, FaEye } from 'react-icons/fa';
+import { Image } from 'antd';
+import 'antd/dist/reset.css';
 
 const JourneyContainer = styled.div`
   min-height: 100vh;
@@ -27,6 +29,12 @@ const HeroContent = styled.div`
 const HeroTitle = styled.h1`
   color: white;
   margin-bottom: 1rem;
+  font-size: 3rem;
+  font-weight: 700;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const HeroDescription = styled.p`
@@ -271,6 +279,70 @@ const MapCaption = styled.div`
   font-weight: 500;
 `;
 
+const GallerySection = styled.section`
+  padding: 4rem 0;
+  background: #f8f9fa;
+`;
+
+const GalleryGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+`;
+
+const GalleryCard = styled.div`
+  background: white;
+  border-radius: ${props => props.theme.borderRadius.lg};
+  overflow: hidden;
+  box-shadow: ${props => props.theme.shadows.md};
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: ${props => props.theme.shadows.lg};
+  }
+`;
+
+const GalleryImage = styled.div`
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.1);
+  }
+`;
+
+const GalleryCaption = styled.div`
+  padding: 1.5rem;
+`;
+
+const GalleryCaptionTitle = styled.h4`
+  color: ${props => props.theme.colors.text};
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+`;
+
+const GalleryCaptionText = styled.p`
+  color: ${props => props.theme.colors.textLight};
+  font-size: 0.85rem;
+  line-height: 1.5;
+`;
+
 const JourneyImageContainer = styled.div`
   margin: 2rem 0;
   background: white;
@@ -299,154 +371,234 @@ const Journey: React.FC = () => {
     <JourneyContainer className="fade-in">
       <HeroSection>
         <HeroContent>
-          <HeroTitle>Hành trình sang Pháp (1911–1917)</HeroTitle>
+          <HeroTitle>Tiểu Sử & Sự Nghiệp</HeroTitle>
           <HeroDescription>
-            Quá trình di chuyển, trải nghiệm và học hỏi qua nhiều quốc gia -
-            Nền tảng chuẩn bị cho bước ngoặt lịch sử trong tư tưởng cách mạng
+            Hành trình hoạt động cách mạng và các cột mốc chính trong cuộc đời Đại tướng Nguyễn Chí Thanh (1914–1967) - 
+            từ thời niên thiếu đến khi trở thành một trong những nhà lãnh đạo kiệt xuất của Đảng và Quân đội.
           </HeroDescription>
         </HeroContent>
       </HeroSection>
 
       <TimelineSection>
         <TimelineContainer>
-          <SectionTitle>Hành trình chi tiết</SectionTitle>
+          <SectionTitle>Tiểu sử chi tiết</SectionTitle>
           <IntroText>
-            Hành trình ra nước ngoài của Nguyễn Tất Thành (1911–1917) là giai đoạn khám phá thế giới, từ việc rời Việt Nam
-            đến khi bắt đầu hoạt động chính trị tại Pháp. Đây là thời kỳ tích lũy kinh nghiệm và hình thành nhận thức về thế giới.
+            Cuộc đời Đại tướng Nguyễn Chí Thanh là một hành trình đầy ý nghĩa, từ một thanh niên nông dân nghèo 
+            đến vị tướng của lòng dân, người đã cống hiến trọn đời cho sự nghiệp giải phóng dân tộc và xây dựng đất nước.
           </IntroText>
 
           <JourneyMapSection>
             <MapContainer>
-              <img src="/images/ho-chi-minh-journey-map.jpg" alt="Bản đồ hành trình Hồ Chí Minh 1911-1917" />
-              <MapCaption>Bản đồ hành trình của Hồ Chí Minh qua các châu lục </MapCaption>
+              <Image 
+                src="/images/nguyen-chi-thanh-battlefields.jpg" 
+                alt="Bản đồ chiến trường Đại tướng Nguyễn Chí Thanh"
+                preview={{
+                  mask: 'Xem bản đồ'
+                }}
+                style={{ width: '100%', height: '400px', objectFit: 'cover' }}
+              />
+              <MapCaption>Các chiến trường mà Đại tướng Nguyễn Chí Thanh từng chiến đấu</MapCaption>
             </MapContainer>
           </JourneyMapSection>
 
           <TimelineWrapper>
             <TimelineItem>
               <TimelineCard>
-                <TimelinePeriod>5/6/1911</TimelinePeriod>
-                <TimelineTitle>Rời Bến Nhà Rồng</TimelineTitle>
+                <TimelinePeriod>1914</TimelinePeriod>
+                <TimelineTitle>Thời niên thiếu (1914–1937)</TimelineTitle>
                 <TimelineDescription>
-                  Nguyễn Tất Thành lên tàu Amiral Latouche-Tréville tại Bến Nhà Rồng (Sài Gòn),
-                  xin làm phụ bếp trên tàu và bắt đầu hành trình ra nước ngoài tìm đường cứu nước.
+                  Nguyễn Chí Thanh, tên khai sinh là Nguyễn Vịnh, sinh ngày 1/1/1914 tại làng Niêm Phò, 
+                  xã Quảng Thọ, huyện Quảng Điền, tỉnh Thừa Thiên Huế, trong một gia đình nông dân nghèo 
+                  nhưng giàu truyền thống yêu nước.
                 </TimelineDescription>
                 <HighlightBox>
                   <HighlightTitle>
-                    <FaShip /> Điểm khởi đầu lịch sử
+                    <FaShip /> Xuất thân và hình thành nhân cách
                   </HighlightTitle>
                   <HighlightText>
-                    Đây là khoảnh khắc quyết định, đánh dấu bước ngoặt từ một thanh niên yêu nước địa phương
-                    thành một nhà cách mạng quốc tế tương lai. Quyết định này thể hiện tầm nhìn xa và khát vọng
-                    tìm con đường mới cho dân tộc.
+                    Từ nhỏ, ông nổi tiếng thông minh, ham học hỏi và có tinh thần phản kháng với áp bức. 
+                    Khi chứng kiến cảnh nông dân bị thực dân, phong kiến bóc lột, Nguyễn Vịnh sớm hình thành 
+                    tư tưởng đấu tranh vì công bằng xã hội.
                   </HighlightText>
                 </HighlightBox>
 
                 <JourneyImageContainer>
-                  <img src="/images/ben-nha-rong-departure.jpg" alt="Bến Nhà Rồng năm 1911" />
-                  <JourneyImageCaption>Bến Nhà Rồng nơi Nguyễn Tất Thành lên tàu ra đi (5/6/1911)</JourneyImageCaption>
+                  <Image 
+                    src="/images/nguyen-chi-thanh-young.jpg" 
+                    alt="Đại tướng Nguyễn Chí Thanh thời trẻ"
+                    preview={{
+                      mask: 'Xem ảnh'
+                    }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                  <JourneyImageCaption>Đại tướng Nguyễn Chí Thanh trong thời niên thiếu</JourneyImageCaption>
                 </JourneyImageContainer>
               </TimelineCard>
             </TimelineItem>
 
             <TimelineItem>
               <TimelineCard>
-                <TimelinePeriod>1911</TimelinePeriod>
-                <TimelineTitle>Hành trình trên biển - Đến Pháp</TimelineTitle>
+                <TimelinePeriod>1937</TimelinePeriod>
+                <TimelineTitle>Tham gia cách mạng và bị tù đày (1937–1945)</TimelineTitle>
                 <TimelineDescription>
-                  Trong thời gian làm phụ bếp trên tàu, Nguyễn Tất Thành đi qua nhiều cảng
-                  (Colombo, Port Said...) và cuối cùng đến Pháp (Marseille/Le Havre).
+                  Năm 1937, ông tham gia phong trào cách mạng và gia nhập Đảng Cộng sản Đông Dương.
+                  Năm 1938, ông bị bắt giam tại nhà lao Thừa Phủ (Huế), sau đó bị đày ra nhà tù Lao Bảo.
                 </TimelineDescription>
                 <TimelineDetails>
-                  <TimelineDetail>Làm phụ bếp trên tàu, học hỏi kỹ năng sinh tồn</TimelineDetail>
-                  <TimelineDetail>Đi qua các cảng quốc tế, quan sát đời sống nhiều nơi</TimelineDetail>
-                  <TimelineDetail>Đặt chân đến nước Pháp lần đầu tiên</TimelineDetail>
-                  <TimelineDetail>Giai đoạn đầu của chuyến đi biển và tiếp xúc với thế giới</TimelineDetail>
+                  <TimelineDetail>1937: Gia nhập Đảng Cộng sản Đông Dương</TimelineDetail>
+                  <TimelineDetail>1938: Bị bắt giam tại nhà lao Thừa Phủ (Huế)</TimelineDetail>
+                  <TimelineDetail>Bị đày ra nhà tù Lao Bảo - nơi ông tiếp tục hoạt động bí mật</TimelineDetail>
+                  <TimelineDetail>Tuyên truyền và tổ chức phong trào trong tù, rèn luyện ý chí cách mạng</TimelineDetail>
                 </TimelineDetails>
               </TimelineCard>
             </TimelineItem>
 
             <TimelineItem>
               <TimelineCard>
-                <TimelinePeriod>Khoảng 1912-1913</TimelinePeriod>
-                <TimelineTitle>Ở Hoa Kỳ</TimelineTitle>
+                <TimelinePeriod>1945-1954</TimelinePeriod>
+                <TimelineTitle>Trong kháng chiến chống Pháp (1945–1954)</TimelineTitle>
                 <TimelineDescription>
-                  Nguyễn Tất Thành đã có thời gian ở Hoa Kỳ, chủ yếu tại New York và Boston.
-                  Đây là giai đoạn Người quan sát đời sống xã hội, tìm hiểu nền dân chủ tư sản và lao động của người dân Mỹ.
+                  Sau Cách mạng Tháng Tám, ông tham gia lãnh đạo phong trào cách mạng ở Trung Bộ.
+                  Từ 1950, ông được điều ra chiến khu Việt Bắc, giữ các chức vụ quan trọng trong Quân đội.
                 </TimelineDescription>
                 <TimelineDetails>
-                  <TimelineDetail>Làm việc tại khách sạn Omni Parker House ở Boston, tiếp xúc với tầng lớp lao động Mỹ</TimelineDetail>
-                  <TimelineDetail>Các tài liệu và lời kể địa phương cho thấy dấu vết rõ ràng về thời gian Người ở Hoa Kỳ</TimelineDetail>
-                  <TimelineDetail>Đây là một giai đoạn quan trọng trong hành trình tìm đường cứu nước của Nguyễn Tất Thành</TimelineDetail>
+                  <TimelineDetail>Sau 1945: Tham gia lãnh đạo phong trào cách mạng ở Trung Bộ</TimelineDetail>
+                  <TimelineDetail>1950: Được điều ra chiến khu Việt Bắc, giữ chức Chính ủy Liên khu IV</TimelineDetail>
+                  <TimelineDetail>Chủ nhiệm Tổng cục Chính trị Quân đội Nhân dân Việt Nam</TimelineDetail>
+                  <TimelineDetail>Cùng Đại tướng Võ Nguyên Giáp chỉ đạo chiến dịch Điện Biên Phủ</TimelineDetail>
                 </TimelineDetails>
               </TimelineCard>
             </TimelineItem>
 
             <TimelineItem>
               <TimelineCard>
-                <TimelinePeriod>Khoảng 1913-1917</TimelinePeriod>
-                <TimelineTitle>Chủ yếu ở Anh (London và các khu vực lân cận)</TimelineTitle>
+                <TimelinePeriod>1954-1967</TimelinePeriod>
+                <TimelineTitle>Trong thời kỳ xây dựng miền Bắc và chi viện miền Nam (1954–1967)</TimelineTitle>
                 <TimelineDescription>
-                  Nguyễn Tất Thành sống và làm các công việc lao động ở Anh trong thời gian dài nhất.
-                  Đây là giai đoạn quan trọng để tiếp xúc với đời sống công nhân và phong trào công đoàn.
+                  Sau Hiệp định Genève, Đại tướng Nguyễn Chí Thanh tập trung xây dựng Quân đội chính quy, hiện đại; 
+                  khởi xướng phong trào "Thi đua Quyết thắng".
                 </TimelineDescription>
                 <TimelineDetails>
-                  <TimelineDetail>Làm bếp, thợ bánh, phụ việc trên tuyến phà Newhaven-Dieppe</TimelineDetail>
-                  <TimelineDetail>Tiếp xúc trực tiếp với đời sống công nhân Anh</TimelineDetail>
-                  <TimelineDetail>Quan sát phong trào công đoàn và đấu tranh giai cấp</TimelineDetail>
-                  <TimelineDetail>Tích lũy kinh nghiệm về tổ chức lao động và xã hội công nghiệp</TimelineDetail>
+                  <TimelineDetail>Sau 1954: Xây dựng Quân đội chính quy, hiện đại</TimelineDetail>
+                  <TimelineDetail>Khởi xướng phong trào "Thi đua Quyết thắng"</TimelineDetail>
+                  <TimelineDetail>1964: Được cử làm Bí thư Trung ương Cục miền Nam</TimelineDetail>
+                  <TimelineDetail>Trực tiếp chỉ đạo chiến trường chống Mỹ với chiến thuật "Nắm thắt lưng địch mà đánh"</TimelineDetail>
                 </TimelineDetails>
               </TimelineCard>
             </TimelineItem>
 
             <TimelineItem>
               <TimelineCard>
-                <TimelinePeriod>Cuối giai đoạn 1913-1917</TimelinePeriod>
-                <TimelineTitle>Trải nghiệm tại Anh và chuẩn bị định hướng</TimelineTitle>
+                <TimelinePeriod>1967</TimelinePeriod>
+                <TimelineTitle>Những năm cuối đời</TimelineTitle>
                 <TimelineDescription>
-                  Trong thời gian ở Anh, Nguyễn Tất Thành tích lũy được nhiều kinh nghiệm quý báu
-                  về xã hội công nghiệp và phong trào lao động.
+                  Tháng 7 năm 1967, sau chuyến công tác ở miền Nam trở về Hà Nội, Đại tướng Nguyễn Chí Thanh 
+                  đột ngột qua đời ở tuổi 53. Sự ra đi của ông là tổn thất to lớn với Đảng, Quân đội và nhân dân.
                 </TimelineDescription>
                 <TimelineDetails>
-                  <TimelineDetail>Quan sát sự phân hóa giai cấp trong xã hội tư bản</TimelineDetail>
-                  <TimelineDetail>Học hỏi về tổ chức công đoàn và đấu tranh của công nhân</TimelineDetail>
-                  <TimelineDetail>Nhận thức về bất công xã hội và áp bức giai cấp</TimelineDetail>
-                  <TimelineDetail>Chuẩn bị tư tưởng cho hoạt động chính trị tiếp theo</TimelineDetail>
-                </TimelineDetails>
-                <HighlightBox>
-                  <HighlightTitle>
-                    <FaGlobeAmericas /> Mở rộng tầm nhìn quốc tế
-                  </HighlightTitle>
-                  <HighlightText>
-                    Thời gian ở Anh giúp Nguyễn Tất Thành hiểu rõ hơn về xã hội công nghiệp,
-                    phong trào công nhân và bản chất của chủ nghĩa tư bản. Đây là nền tảng quan trọng
-                    cho hoạt động cách mạng sau này.
-                  </HighlightText>
-                </HighlightBox>
-              </TimelineCard>
-            </TimelineItem>
-
-            <TimelineItem>
-              <TimelineCard>
-                <TimelinePeriod>1917 - 1919</TimelinePeriod>
-                <TimelineTitle>Đến Pháp và bắt đầu bước vào hoạt động chính trị</TimelineTitle>
-                <TimelineDescription>
-                  Nguyễn Tất Thành (sau này gọi là Nguyễn Ái Quốc / Hồ Chí Minh) sau thời gian làm việc và học hỏi ở nhiều nước đã đến Paris từ London vào cuối năm 1917;
-                  Tại đây, Người bắt đầu tìm hiểu sâu hơn về phong trào cách mạng và tư tưởng dân chủ, tự do, bình đẳng.
-                </TimelineDescription>
-                <TimelineDetails>
-                  <TimelineDetail>Đến Paris từ London năm 1917, bắt đầu tìm hiểu đời sống chính trị – xã hội Pháp</TimelineDetail>
-                  <TimelineDetail>Sinh hoạt trong cộng đồng người An Nam yêu nước tại Paris</TimelineDetail>
-                  <TimelineDetail>Tiếp xúc với các nhà cách mạng, xã hội chủ nghĩa và cộng sản Pháp</TimelineDetail>
-                  <TimelineDetail>Hình thành tư tưởng cách mạng, đặt nền tảng cho con đường cứu nước sau này</TimelineDetail>
+                  <TimelineDetail>Tháng 7/1967: Đột ngột qua đời tại Hà Nội ở tuổi 53</TimelineDetail>
+                  <TimelineDetail>Trung thành vô hạn với cách mạng, hết lòng vì dân, vì nước</TimelineDetail>
+                  <TimelineDetail>Để lại di sản quý báu cho Đảng, Quân đội và nhân dân</TimelineDetail>
+                  <TimelineDetail>Tấm gương sáng về người chiến sĩ cộng sản kiên cường</TimelineDetail>
                 </TimelineDetails>
               </TimelineCard>
             </TimelineItem>
-
 
           </TimelineWrapper>
         </TimelineContainer>
       </TimelineSection>
+
+      <GallerySection>
+        <TimelineContainer>
+          <SectionTitle>Hình Ảnh Lịch Sử</SectionTitle>
+          <GalleryGrid>
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-youth-journey.jpg" 
+                  alt="Đại tướng thời trẻ"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Thời niên thiếu</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Hình ảnh Đại tướng Nguyễn Chí Thanh trong giai đoạn thanh niên, khi mới bắt đầu con đường cách mạng.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
+
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-prison-journey.jpg" 
+                  alt="Thời kỳ tù đày"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Thời kỳ tù đày</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Di tích nhà tù Lao Bảo, nơi ông rèn luyện ý chí cách mạng kiên cường.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
+
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-dien-bien-journey.jpg" 
+                  alt="Chiến dịch Điện Biên Phủ"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Điện Biên Phủ</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Đại tướng trong chiến dịch Điện Biên Phủ lịch sử năm 1954.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
+
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-south-journey.jpg" 
+                  alt="Tại miền Nam"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Chiến trường miền Nam</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Đại tướng chỉ đạo chiến đấu tại miền Nam trong giai đoạn 1964-1967.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
+
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-legacy-journey.jpg" 
+                  alt="Di sản Đại tướng"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Di sản vĩ đại</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Tượng đài và các công trình kỷ niệm Đại tướng Nguyễn Chí Thanh.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
+          </GalleryGrid>
+        </TimelineContainer>
+      </GallerySection>
 
       <SignificanceSection>
         <TimelineContainer>
@@ -454,28 +606,28 @@ const Journey: React.FC = () => {
           <SignificanceGrid>
             <SignificanceCard>
               <SignificanceIcon><FaGlobeAmericas /></SignificanceIcon>
-              <SignificanceTitle>Mở rộng tầm nhìn thế giới</SignificanceTitle>
+              <SignificanceTitle>Vị tướng của lòng dân</SignificanceTitle>
               <SignificanceText>
-                Hành trình qua nhiều quốc gia giúp Hồ Chí Minh mở rộng tầm nhìn, nhận ra bất công và áp bức
-                của chủ nghĩa thực dân trên quy mô toàn cầu, không chỉ riêng Việt Nam.
+                Đại tướng Nguyễn Chí Thanh được biết đến với phong cách lãnh đạo gần gũi, sâu sát cơ sở, 
+                luôn sống và chiến đấu cùng chiến sĩ, thấu hiểu tâm tư nguyện vọng của nhân dân.
               </SignificanceText>
             </SignificanceCard>
 
             <SignificanceCard>
               <SignificanceIcon><FaRoute /></SignificanceIcon>
-              <SignificanceTitle>Tích lũy kinh nghiệm thực tế</SignificanceTitle>
+              <SignificanceTitle>Đóng góp cho sự nghiệp kháng chiến</SignificanceTitle>
               <SignificanceText>
-                Lao động nhiều nghề và quan sát đời sống lao động giúp Người tích lũy kinh nghiệm thực tế về
-                xã hội, tâm lý con người và các phương thức tổ chức.
+                Ông đã có vai trò quan trọng trong việc xây dựng Quân đội nhân dân, chỉ đạo chiến dịch Điện Biên Phủ 
+                và chiến trường miền Nam, góp phần vào thắng lợi chung của dân tộc.
               </SignificanceText>
             </SignificanceCard>
 
             <SignificanceCard>
               <SignificanceIcon><FaEye /></SignificanceIcon>
-              <SignificanceTitle>Chuẩn bị tư tưởng cách mạng</SignificanceTitle>
+              <SignificanceTitle>Di sản tư tưởng quý báu</SignificanceTitle>
               <SignificanceText>
-                Đây là nền tảng chuẩn bị tư tưởng và trải nghiệm cho bước ngoặt cách mạng
-                khi trở lại Pháp và tham gia hoạt động chính trị tích cực (1917–1923).
+                Tư tưởng "toàn dân đánh giặc", "vừa hồng vừa chuyên" và tinh thần "Dám nghĩ - Dám làm - Dám chịu trách nhiệm" 
+                của ông vẫn còn nguyên giá trị cho thế hệ hôm nay.
               </SignificanceText>
             </SignificanceCard>
           </SignificanceGrid>

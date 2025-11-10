@@ -1,284 +1,60 @@
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { FaArrowRight, FaMapMarkedAlt, FaBookOpen, FaUsers } from 'react-icons/fa';
+import { FaArrowRight, FaBookOpen, FaUsers, FaStar, FaCalendarAlt } from 'react-icons/fa';
+import { Image } from 'antd';
+import 'antd/dist/reset.css';
 
-const HomeContainer = styled.div`
+const AboutContainer = styled.div`
   min-height: 100vh;
+  background: ${props => props.theme.colors.background};
 `;
 
 const HeroSection = styled.section`
-  background: ${props => props.theme.colors.gradient.hero};
+  background: ${props => props.theme.colors.gradient.primary};
+  color: white;
   padding: 6rem 0 4rem;
   text-align: center;
-  position: relative;
-  overflow: hidden;
-`;
-
-const HeroImage = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('/images/ho-chi-minh-hero.jpg');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.1;
-  z-index: 0;
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: ${props => props.theme.colors.gradient.hero};
-    opacity: 0.8;
-  }
-`;
-
-const HeroContentWrapper = styled.div`
-  position: relative;
-  z-index: 1;
 `;
 
 const HeroContent = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
-
-  @media (max-width: 768px) {
-    padding: 0 1rem;
-  }
 `;
 
 const HeroTitle = styled.h1`
+  font-size: 3.5rem;
   margin-bottom: 1.5rem;
-  animation: fadeInUp 0.8s ease;
-`;
-
-const HeroSubtitle = styled.p`
-  font-size: 1.3rem;
-  color: ${props => props.theme.colors.textLight};
-  max-width: 800px;
-  margin: 0 auto 2rem;
-  animation: fadeInUp 0.8s ease 0.2s both;
-`;
-
-const IntroSection = styled.section`
-  padding: 4rem 0;
-  background: ${props => props.theme.colors.background};
-`;
-
-const IntroContent = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 2rem;
-
-  @media (max-width: 768px) {
-    padding: 0 1rem;
-  }
-`;
-
-const IntroText = styled.div`
-  font-size: 1.1rem;
-  line-height: 1.8;
-  text-align: justify;
-  margin-bottom: 2rem;
-
-  .highlight {
-    background: linear-gradient(120deg, ${props => props.theme.colors.accent}30 0%, ${props => props.theme.colors.accent}30 100%);
-    background-repeat: no-repeat;
-    background-size: 100% 40%;
-    background-position: 0 75%;
-    padding: 2px 4px;
-    font-weight: 500;
-  }
-`;
-
-const IntroTitle = styled.h2`
-  text-align: center;
-  margin-bottom: 2rem;
-  color: ${props => props.theme.colors.text};
   font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
   font-weight: 700;
+  color: white;
+  
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
 `;
 
-const HighlightsSection = styled.section`
+const HeroDescription = styled.p`
+  font-size: 1.3rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto;
+  
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
+`;
+
+const ContentSection = styled.section`
   padding: 4rem 0;
-  background: ${props => props.theme.colors.surface};
 `;
 
-const HighlightsContainer = styled.div`
+const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
-
-  @media (max-width: 768px) {
-    padding: 0 1rem;
-  }
-`;
-
-const HighlightsTitle = styled.h2`
-  text-align: center;
-  margin-bottom: 3rem;
-  color: ${props => props.theme.colors.text};
-  font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
-  font-weight: 700;
-`;
-
-const HighlightsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const HighlightCard = styled.div`
-  background: white;
-  padding: 2rem;
-  border-radius: ${props => props.theme.borderRadius.lg};
-  box-shadow: ${props => props.theme.shadows.sm};
-  transition: all 0.3s ease;
-  border-top: 4px solid ${props => props.theme.colors.primary};
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: ${props => props.theme.shadows.md};
-  }
-`;
-
-const HighlightIcon = styled.div`
-  font-size: 2.5rem;
-  color: ${props => props.theme.colors.primary};
-  margin-bottom: 1rem;
-`;
-
-const HighlightTitle = styled.h3`
-  color: ${props => props.theme.colors.primary};
-  margin-bottom: 1rem;
-`;
-
-const HighlightText = styled.p`
-  color: ${props => props.theme.colors.textLight};
-  margin-bottom: 1.5rem;
-`;
-
-const TimelineSection = styled.section`
-  padding: 4rem 0;
-  background: ${props => props.theme.colors.background};
-`;
-
-const TimelineContainer = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 2rem;
-
-  @media (max-width: 768px) {
-    padding: 0 1rem;
-  }
-`;
-
-const TimelineItem = styled.div`
-  display: flex;
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  background: white;
-  border-radius: ${props => props.theme.borderRadius.lg};
-  box-shadow: ${props => props.theme.shadows.sm};
-  border-left: 4px solid ${props => props.theme.colors.accent};
-
-  &:hover {
-    box-shadow: ${props => props.theme.shadows.md};
-  }
-`;
-
-const TimelineYear = styled.div`
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: ${props => props.theme.colors.accent};
-  min-width: 100px;
-  margin-right: 2rem;
-
-  @media (max-width: 768px) {
-    min-width: 80px;
-    margin-right: 1rem;
-  }
-`;
-
-const TimelineContent = styled.div`
-  flex: 1;
-`;
-
-const TimelineTitle = styled.h4`
-  color: ${props => props.theme.colors.primary};
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-`;
-
-const TimelineDescription = styled.p`
-  color: ${props => props.theme.colors.textLight};
-  margin: 0;
-  font-size: 1rem;
-`;
-
-const CallToActionSection = styled.section`
-  padding: 4rem 0;
-  background: ${props => props.theme.colors.gradient.primary};
-  text-align: center;
-  color: white;
-`;
-
-const CTAContent = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 2rem;
-
-  @media (max-width: 768px) {
-    padding: 0 1rem;
-  }
-`;
-
-const CTATitle = styled.h2`
-  color: white;
-  margin-bottom: 1.5rem;
-`;
-
-const CTAText = styled.p`
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
-`;
-
-const CTAButton = styled(Link)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: white;
-  color: ${props => props.theme.colors.primary};
-  padding: 1rem 2rem;
-  border-radius: ${props => props.theme.borderRadius.md};
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: ${props => props.theme.shadows.md};
-    color: ${props => props.theme.colors.secondary};
-  }
-`;
-
-const HistoricalImagesSection = styled.section`
-  padding: 4rem 0;
-  background: ${props => props.theme.colors.surface};
 `;
 
 const SectionTitle = styled.h2`
@@ -290,206 +66,576 @@ const SectionTitle = styled.h2`
   font-weight: 700;
 `;
 
-const ImageGallery = styled.div`
+const TeamGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
-  margin-top: 2rem;
+  margin-bottom: 4rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 `;
 
-const ImageCard = styled.div`
+const TeamCard = styled.div`
   background: white;
   border-radius: ${props => props.theme.borderRadius.lg};
-  box-shadow: ${props => props.theme.shadows.sm};
-  overflow: hidden;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: ${props => props.theme.shadows.md};
   transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: ${props => props.theme.shadows.lg};
+  }
+`;
 
+const TeamIcon = styled.div`
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: ${props => props.theme.colors.gradient.primary};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  
+  svg {
+    font-size: 2rem;
+    color: white;
+  }
+`;
+
+const TeamName = styled.h3`
+  color: ${props => props.theme.colors.text};
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+`;
+
+const TeamRole = styled.p`
+  color: ${props => props.theme.colors.primary};
+  font-weight: 500;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+`;
+
+const TeamDescription = styled.p`
+  color: ${props => props.theme.colors.textLight};
+  font-size: 0.9rem;
+  line-height: 1.5;
+`;
+
+const TechSection = styled.div`
+  background: ${props => props.theme.colors.surface};
+  padding: 4rem 0;
+  margin: 4rem 0;
+`;
+
+const TechGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+`;
+
+const TechCard = styled.div`
+  background: white;
+  border-radius: ${props => props.theme.borderRadius.md};
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: ${props => props.theme.shadows.sm};
+  transition: all 0.3s ease;
+  
   &:hover {
     transform: translateY(-5px);
     box-shadow: ${props => props.theme.shadows.md};
   }
 `;
 
-const ImagePlaceholder = styled.div`
-  position: relative;
-  aspect-ratio: 4/3;
-  background: ${props => props.theme.colors.gradient.hero};
+const TechIcon = styled.div<{ color: string }>`
+  font-size: 3rem;
+  color: ${props => props.color};
+  margin-bottom: 1rem;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+`;
+
+const TechName = styled.h4`
+  color: ${props => props.theme.colors.text};
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+`;
+
+const TechDescription = styled.p`
   color: ${props => props.theme.colors.textLight};
-  font-style: italic;
+  font-size: 0.85rem;
+  line-height: 1.4;
+`;
+
+const AISection = styled.div`
+  background: ${props => props.theme.colors.gradient.secondary};
+  color: white;
+  padding: 4rem 0;
+  margin: 4rem 0;
+`;
+
+const AIGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+`;
+
+const AICard = styled.div`
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: ${props => props.theme.borderRadius.lg};
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+  }
+`;
+
+const AIIcon = styled.div<{ color: string }>`
+  font-size: 3.5rem;
+  color: ${props => props.color};
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const AIName = styled.h4`
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+`;
+
+const AIDescription = styled.p`
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  line-height: 1.5;
+`;
+
+const ProjectInfo = styled.div`
+  background: white;
+  border-radius: ${props => props.theme.borderRadius.lg};
+  padding: 2rem;
+  margin: 3rem 0;
+  box-shadow: ${props => props.theme.shadows.md};
+  text-align: center;
+`;
+
+const ProjectTitle = styled.h3`
+  color: ${props => props.theme.colors.text};
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+`;
+
+const ProjectText = styled.p`
+  color: ${props => props.theme.colors.textLight};
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+`;
+
+const GallerySection = styled.section`
+  padding: 4rem 0;
+  background: #f8f9fa;
+`;
+
+const GalleryGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+`;
+
+const GalleryCard = styled.div`
+  background: white;
+  border-radius: ${props => props.theme.borderRadius.lg};
+  overflow: hidden;
+  box-shadow: ${props => props.theme.shadows.md};
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: ${props => props.theme.shadows.lg};
+  }
+`;
+
+const GalleryImage = styled.div`
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
   
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
+    transition: transform 0.3s ease;
   }
-  
-  /* Fallback khi chưa có ảnh */
-  &:empty:before {
-    content: "Vị trí cho ảnh lịch sử";
-    text-align: center;
+
+  &:hover img {
+    transform: scale(1.1);
   }
 `;
 
-const ImageCaption = styled.div`
-  padding: 1rem;
-  font-size: 0.9rem;
+const GalleryCaption = styled.div`
+  padding: 1.5rem;
+`;
+
+const GalleryCaptionTitle = styled.h4`
   color: ${props => props.theme.colors.text};
-  text-align: center;
-  background: white;
-  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
 `;
 
-const Home = () => {
+const GalleryCaptionText = styled.p`
+  color: ${props => props.theme.colors.textLight};
+  font-size: 0.9rem;
+  line-height: 1.5;
+`;
+
+const Home: React.FC = () => {
+  const timelineData = [
+    {
+      year: "1914",
+      event: "Sinh tại xã Quảng Thọ, huyện Quảng Điền, Thừa Thiên Huế"
+    },
+    {
+      year: "1937", 
+      event: "Gia nhập Đảng Cộng sản Đông Dương"
+    },
+    {
+      year: "1945",
+      event: "Cách mạng Tháng Tám thành công, tham gia xây dựng chính quyền cách mạng"
+    },
+    {
+      year: "1954",
+      event: "Chỉ đạo kháng chiến chống Pháp thắng lợi, giữ chức Chủ nhiệm Tổng cục Chính trị"
+    },
+    {
+      year: "1964-1967",
+      event: "Làm Bí thư Trung ương Cục miền Nam, trực tiếp chỉ đạo chiến trường"
+    },
+    {
+      year: "1967",
+      event: "Mất tại Hà Nội, để lại niềm tiếc thương vô hạn"
+    }
+  ];
+
   return (
-    <HomeContainer className="fade-in">
+    <AboutContainer className="fade-in">
       <HeroSection>
-        <HeroImage />
-        <HeroContentWrapper>
         <HeroContent>
-          <HeroTitle>Hành trình Hồ Chí Minh tại Pháp</HeroTitle>
-          <HeroSubtitle>
-            Khám phá giai đoạn quan trọng từ 1911 đến 1923 - thời kỳ hình thành tư tưởng cách mạng 
-            của vị lãnh tụ vĩ đại của dân tộc Việt Nam
-          </HeroSubtitle>
+          <HeroTitle>Đại Tướng Nguyễn Chí Thanh</HeroTitle>
+          <HeroDescription>
+            Người Chiến Sĩ Của Nhân Dân
+          </HeroDescription>
+          <div style={{
+            background: 'rgba(255, 255, 255, 0.1)',
+            borderLeft: '4px solid #FF6B35',
+            padding: '2rem',
+            margin: '2rem auto',
+            maxWidth: '800px',
+            backdropFilter: 'blur(10px)',
+            borderRadius: '8px'
+          }}>
+            <blockquote style={{
+              fontSize: '1.3rem',
+              fontStyle: 'italic',
+              color: 'white',
+              margin: '0',
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)'
+            }}>
+              "Tất cả vì miền Nam ruột thịt – Quyết chiến, Quyết thắng."
+            </blockquote>
+            <cite style={{
+              display: 'block',
+              marginTop: '1rem',
+              fontSize: '1rem',
+              color: '#FF6B35',
+              fontWeight: '600'
+            }}>
+              — Đại tướng Nguyễn Chí Thanh
+            </cite>
+          </div>
         </HeroContent>
-        </HeroContentWrapper>
       </HeroSection>
 
-      <IntroSection>
-        <IntroContent>
-          <IntroTitle>Giới thiệu chung</IntroTitle>
-          <IntroText>
-            <p>
-              Hành trình Hồ Chí Minh tại Pháp (1911–1923) là một trong những <span className="highlight">giai đoạn đặc biệt và có ý nghĩa bước ngoặt</span> trong cuộc đời hoạt động cách mạng của Người. 
-              Đây không chỉ đơn thuần là một chuyến đi dài ngày ở nước ngoài, mà còn là một <span className="highlight">hành trình lịch sử để tìm kiếm, khám phá và khẳng định con đường cứu nước đúng đắn</span> cho dân tộc Việt Nam.
-            </p>
-            <p>
-              Trong giai đoạn này, từ một thanh niên yêu nước với khát vọng độc lập dân tộc, Hồ Chí Minh từng bước trưởng thành để trở thành một <span className="highlight">chiến sĩ cộng sản quốc tế</span>, 
-              gắn bó vận mệnh dân tộc Việt Nam với phong trào cách mạng toàn cầu.
-            </p>
-            <p>
-              Có thể thấy, hành trình tại Pháp chính là nơi ươm mầm những <span className="highlight">bước chuyển biến quan trọng nhất trong tư tưởng và lý tưởng cách mạng</span> của Hồ Chí Minh.
-            </p>
-          </IntroText>
-        </IntroContent>
-      </IntroSection>
+      <ContentSection>
+        <Container>
+          <SectionTitle>Giới Thiệu Khái Quát</SectionTitle>
+          <ProjectInfo>
+            <ProjectText>
+              Đại tướng Nguyễn Chí Thanh (1914–1967) là một trong những nhà lãnh đạo kiệt xuất của Đảng Cộng sản Việt Nam, người đã dành trọn cuộc đời cho sự nghiệp giải phóng dân tộc, thống nhất đất nước và xây dựng Quân đội Nhân dân Việt Nam vững mạnh.
+            </ProjectText>
+            <ProjectText>
+              Ông được mệnh danh là "vị tướng của lòng dân" – bởi ông không chỉ là nhà quân sự tài năng, mà còn là người lãnh đạo gần gũi, giản dị, thấu hiểu tâm tư chiến sĩ và nhân dân.
+            </ProjectText>
+          </ProjectInfo>
+        </Container>
+      </ContentSection>
 
-      <HighlightsSection>
-        <HighlightsContainer>
-          <HighlightsTitle>Những khía cạnh tiêu biểu</HighlightsTitle>
-          <HighlightsGrid>
-            <HighlightCard>
-              <HighlightIcon><FaMapMarkedAlt /></HighlightIcon>
-              <HighlightTitle>Khát vọng dân tộc</HighlightTitle>
-              <HighlightText>
-                Ra đi với mong muốn tìm con đường giải phóng dân tộc Việt Nam khỏi ách thống trị thực dân.
-              </HighlightText>
-            </HighlightCard>
-            
-            <HighlightCard>
-              <HighlightIcon><FaBookOpen /></HighlightIcon>
-              <HighlightTitle>Nhận thức chính trị</HighlightTitle>
-              <HighlightText>
-                Quan sát, trải nghiệm để nhận ra bản chất áp bức của chủ nghĩa thực dân và xã hội tư bản.
-              </HighlightText>
-            </HighlightCard>
-            
-            <HighlightCard>
-              <HighlightIcon><FaUsers /></HighlightIcon>
-              <HighlightTitle>Bước ngoặt lý tưởng</HighlightTitle>
-              <HighlightText>
-                Tìm thấy ánh sáng chủ nghĩa Mác – Lênin, từ đó xác định con đường cách mạng vô sản.
-              </HighlightText>
-            </HighlightCard>
-          </HighlightsGrid>
-        </HighlightsContainer>
-      </HighlightsSection>
+      <TechSection>
+        <Container>
+          <SectionTitle style={{ color: '#2C3E50' }}>Tầm Nhìn & Sứ Mệnh</SectionTitle>
+          <TechGrid>
+            <TechCard>
+              <TechIcon color="#3498db">
+                <FaStar />
+              </TechIcon>
+              <TechName>Tầm Nhìn</TechName>
+              <TechDescription>
+                Giúp thế hệ trẻ hiểu rõ hơn về một trong những vị tướng có tầm ảnh hưởng sâu sắc nhất trong lịch sử cách mạng Việt Nam.
+              </TechDescription>
+            </TechCard>
+            <TechCard>
+              <TechIcon color="#e74c3c">
+                <FaBookOpen />
+              </TechIcon>
+              <TechName>Sứ Mệnh</TechName>
+              <TechDescription>
+                Lưu giữ và lan tỏa tinh thần "toàn dân đánh giặc", "vì miền Nam ruột thịt", và tư tưởng "vừa hồng vừa chuyên" mà Đại tướng để lại.
+              </TechDescription>
+            </TechCard>
+          </TechGrid>
+        </Container>
+      </TechSection>
 
-      <TimelineSection>
-        <TimelineContainer>
-          <h2 className="text-center">Những điểm nhấn nổi bật</h2>
-          
-          <TimelineItem>
-            <TimelineYear>1911</TimelineYear>
-            <TimelineContent>
-              <TimelineTitle>Quyết định ra đi tìm đường cứu nước</TimelineTitle>
-              <TimelineDescription>
-                Nguyễn Tất Thành rời Tổ quốc tại Bến Nhà Rồng, bắt đầu chuyến đi lịch sử nhằm tìm con đường mới cho dân tộc.
-              </TimelineDescription>
-            </TimelineContent>
-          </TimelineItem>
+      <ContentSection>
+        <Container>
+          <SectionTitle>Timeline Tóm Tắt</SectionTitle>
+          <div style={{ maxWidth: '900px', margin: '0 auto', position: 'relative', paddingLeft: '2rem' }}>
+            <div style={{
+              content: '',
+              position: 'absolute',
+              left: '20px',
+              top: '0',
+              bottom: '0',
+              width: '3px',
+              background: '#3498db'
+            }}></div>
+            {timelineData.map((item, index) => (
+              <div key={index} style={{
+                position: 'relative',
+                marginBottom: '3rem',
+                paddingLeft: '3rem'
+              }}>
+                <div style={{
+                  content: '',
+                  position: 'absolute',
+                  left: '-8px',
+                  top: '8px',
+                  width: '16px',
+                  height: '16px',
+                  borderRadius: '50%',
+                  background: '#FF6B35',
+                  border: '3px solid white'
+                }}></div>
+                <div style={{
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold',
+                  color: '#3498db',
+                  marginBottom: '0.5rem'
+                }}>
+                  {item.year}
+                </div>
+                <p style={{
+                  color: '#555',
+                  lineHeight: '1.6',
+                  margin: '0'
+                }}>
+                  {item.event}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </ContentSection>
 
-          <TimelineItem>
-            <TimelineYear>1919</TimelineYear>
-            <TimelineContent>
-              <TimelineTitle>"Bản yêu sách của nhân dân An Nam"</TimelineTitle>
-              <TimelineDescription>
-                Hồ Chí Minh gửi bản yêu sách tới Hội nghị Versailles, yêu cầu quyền tự do, dân chủ cho nhân dân Việt Nam.
-              </TimelineDescription>
-            </TimelineContent>
-          </TimelineItem>
+      <GallerySection>
+        <Container>
+          <SectionTitle>Hình Ảnh Lịch Sử</SectionTitle>
+          <GalleryGrid>
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-portrait-home.jpg" 
+                  alt="Chân dung Đại tướng Nguyễn Chí Thanh"
+                  preview={{
+                    mask: 'Xem ảnh'
+                  }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Chân dung Đại tướng</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Hình ảnh chân dung trang trọng của Đại tướng Nguyễn Chí Thanh, biểu tượng của sự kiên cường và trí tuệ.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
 
-          <TimelineItem>
-            <TimelineYear>1920</TimelineYear>
-            <TimelineContent>
-              <TimelineTitle>Gia nhập Đảng Cộng sản Pháp</TimelineTitle>
-              <TimelineDescription>
-                Đánh dấu bước ngoặt: Hồ Chí Minh tiếp nhận chủ nghĩa Mác – Lênin và lựa chọn con đường cách mạng vô sản.
-              </TimelineDescription>
-            </TimelineContent>
-          </TimelineItem>
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-soldiers-home.jpg" 
+                  alt="Đại tướng cùng bộ đội"
+                  preview={{
+                    mask: 'Xem ảnh'
+                  }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Cùng chiến sĩ</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Đại tướng luôn sống và chiến đấu cùng bộ đội, thể hiện phong cách lãnh đạo gần gũi, sâu sát.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
 
-          <TimelineItem>
-            <TimelineYear>1922</TimelineYear>
-            <TimelineContent>
-              <TimelineTitle>Viết báo Le Paria (Người cùng khổ)</TimelineTitle>
-              <TimelineDescription>
-                Qua ngòi bút báo chí, kêu gọi đoàn kết các dân tộc thuộc địa chống lại ách áp bức.
-              </TimelineDescription>
-            </TimelineContent>
-          </TimelineItem>
-        </TimelineContainer>
-      </TimelineSection>
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-battlefield-home.jpg" 
+                  alt="Đại tướng tại chiến trường"
+                  preview={{
+                    mask: 'Xem ảnh'
+                  }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Tại chiến trường</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Hình ảnh Đại tướng chỉ đạo chiến đấu tại miền Nam, nơi ông dành trọn tâm huyết.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
 
-      <HistoricalImagesSection>
-        <TimelineContainer>
-          <SectionTitle>Hình ảnh lịch sử</SectionTitle>
-          <ImageGallery>
-            <ImageCard>
-              <ImagePlaceholder>
-                <img src="/images/ben-nha-rong-1911.jpg" alt="Bến Nhà Rồng năm 1911" />
-              </ImagePlaceholder>
-            </ImageCard>
-            <ImageCard>
-              <ImagePlaceholder>
-                <img src="/images/ho-chi-minh-young.jpg" alt="Hồ Chí Minh thời trẻ" />
-              </ImagePlaceholder>
-            </ImageCard>
-            <ImageCard>
-              <ImagePlaceholder>
-                <img src="/images/versailles-conference-1919.jpg" alt="Hội nghị Versailles 1919" />
-              </ImagePlaceholder>
-            </ImageCard>
-          </ImageGallery>
-        </TimelineContainer>
-      </HistoricalImagesSection>
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-meeting-home.jpg" 
+                  alt="Đại tướng trong cuộc họp"
+                  preview={{
+                    mask: 'Xem ảnh'
+                  }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Chỉ đạo tác chiến</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Đại tướng trong một cuộc họp chỉ đạo tác chiến, thể hiện tầm nhìn chiến lược sắc bén.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
 
-      <CallToActionSection>
-        <CTAContent>
-          <CTATitle>Khám phá chi tiết hành trình lịch sử</CTATitle>
-          <CTAText>
-            Tìm hiểu sâu hơn về từng giai đoạn quan trọng trong cuộc đời và sự nghiệp cách mạng của Hồ Chí Minh tại Pháp
-          </CTAText>
-          <CTAButton to="/historical-context">
-            Bắt đầu khám phá <FaArrowRight />
-          </CTAButton>
-        </CTAContent>
-      </CallToActionSection>
-    </HomeContainer>
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-people-home.jpg" 
+                  alt="Đại tướng gặp gỡ nhân dân"
+                  preview={{
+                    mask: 'Xem ảnh'
+                  }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Gần gũi nhân dân</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Đại tướng gặp gỡ và động viên nhân dân, luôn tin tưởng vào sức mạnh quần chúng.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
+          </GalleryGrid>
+        </Container>
+      </GallerySection>
+
+      <AISection>
+        <Container>
+          <SectionTitle style={{ color: 'white' }}>Khám Phá Thêm</SectionTitle>
+          <AIGrid>
+            <Link to="/journey" style={{ textDecoration: 'none' }}>
+              <AICard>
+                <AIIcon color="#FF6B35">
+                  <FaCalendarAlt />
+                </AIIcon>
+                <AIName>Tiểu Sử & Sự Nghiệp</AIName>
+                <AIDescription>
+                  Tìm hiểu chi tiết về hành trình hoạt động cách mạng và các cột mốc quan trọng trong cuộc đời Đại tướng.
+                </AIDescription>
+                <div style={{ marginTop: '1rem', color: '#FF6B35' }}>
+                  Khám phá <FaArrowRight style={{ marginLeft: '0.5rem' }} />
+                </div>
+              </AICard>
+            </Link>
+            <Link to="/historical-context" style={{ textDecoration: 'none' }}>
+              <AICard>
+                <AIIcon color="#3498db">
+                  <FaBookOpen />
+                </AIIcon>
+                <AIName>Tư Tưởng & Phong Cách</AIName>
+                <AIDescription>
+                  Phân tích sâu về triết lý sống, phong cách lãnh đạo và giá trị tư tưởng mà Đại tướng để lại.
+                </AIDescription>
+                <div style={{ marginTop: '1rem', color: '#FF6B35' }}>
+                  Tìm hiểu <FaArrowRight style={{ marginLeft: '0.5rem' }} />
+                </div>
+              </AICard>
+            </Link>
+            <Link to="/activities" style={{ textDecoration: 'none' }}>
+              <AICard>
+                <AIIcon color="#2ecc71">
+                  <FaUsers />
+                </AIIcon>
+                <AIName>Di Sản & Hình Ảnh</AIName>
+                <AIDescription>
+                  Khám phá di sản vật chất và tinh thần, hình ảnh quý hiếm và ảnh hưởng lâu dài của Đại tướng.
+                </AIDescription>
+                <div style={{ marginTop: '1rem', color: '#FF6B35' }}>
+                  Xem thêm <FaArrowRight style={{ marginLeft: '0.5rem' }} />
+                </div>
+              </AICard>
+            </Link>
+          </AIGrid>
+        </Container>
+      </AISection>
+    </AboutContainer>
   );
 };
 

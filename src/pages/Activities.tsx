@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaNewspaper, FaUsers, FaFlag, FaStar, FaHandshake } from 'react-icons/fa';
+import { Image } from 'antd';
+import 'antd/dist/reset.css';
 
 const ActivitiesContainer = styled.div`
   min-height: 100vh;
@@ -257,6 +259,71 @@ const HeritageImageContainer = styled.div`
   }
 `;
 
+const GallerySection = styled.section`
+  padding: 4rem 0;
+  background: white;
+`;
+
+const GalleryGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+`;
+
+const GalleryCard = styled.div`
+  background: white;
+  border-radius: ${props => props.theme.borderRadius.lg};
+  overflow: hidden;
+  box-shadow: ${props => props.theme.shadows.md};
+  transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: ${props => props.theme.shadows.lg};
+  }
+`;
+
+const GalleryImage = styled.div`
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.1);
+  }
+`;
+
+const GalleryCaption = styled.div`
+  padding: 1.5rem;
+`;
+
+const GalleryCaptionTitle = styled.h4`
+  color: ${props => props.theme.colors.text};
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+`;
+
+const GalleryCaptionText = styled.p`
+  color: ${props => props.theme.colors.textLight};
+  font-size: 0.85rem;
+  line-height: 1.5;
+`;
+
 const HeritageCaption = styled.div`
   padding: 1.5rem;
   text-align: center;
@@ -302,44 +369,43 @@ const Activities = () => {
     <ActivitiesContainer className="fade-in">
       <HeroSection>
         <HeroContent>
-          <HeroTitle>Hoạt động tại Pháp (1917–1923)</HeroTitle>
+          <HeroTitle>Di Sản & Hình Ảnh</HeroTitle>
           <HeroDescription>
-            Từ thanh niên yêu nước đến chiến sĩ cộng sản quốc tế - Giai đoạn hình thành tư tưởng cách mạng
+            Khẳng định ảnh hưởng lâu dài của Đại tướng Nguyễn Chí Thanh đối với lịch sử, thế hệ trẻ và văn hóa dân tộc Việt Nam
           </HeroDescription>
         </HeroContent>
       </HeroSection>
 
       <TimelineSection>
         <TimelineContainer>
-          <SectionTitle>Dòng thời gian hoạt động</SectionTitle>
+          <SectionTitle>Di sản vật chất và tinh thần</SectionTitle>
           <IntroText>
-            Từ 1917 đến 1923, Hồ Chí Minh trải qua giai đoạn quan trọng tại Pháp. Đặc biệt từ 1919, Người bắt đầu 
-            hoạt động chính trị tích cực: gửi yêu sách quốc tế, tham gia phong trào cộng sản, thành lập tổ chức, 
-            viết báo và xác định con đường cứu nước thông qua cách mạng vô sản.
+            Đại tướng Nguyễn Chí Thanh để lại những di sản quý báu cho đất nước và dân tộc, từ các công trình vật chất 
+            đến những giá trị tinh thần vô giá mà thế hệ hôm nay vẫn đang kế thừa và phát huy.
           </IntroText>
 
           <ActivitiesGrid>
             <ActivityCard>
               <ActivityHeader>
-                <ActivityYear>1917–1918</ActivityYear>
+                <ActivityYear>1914-1937</ActivityYear>
                 <ActivityTitle>
                   <FaHandshake />
-                  Ở lại Pháp thời chiến
+                  Thời niên thiếu và hình thành lý tưởng
                 </ActivityTitle>
               </ActivityHeader>
               <ActivityContent>
                 <ActivityDescription>
-                  Trong Thế chiến I, Nguyễn Ái Quốc ở lại Pháp, lao động kiếm sống và quan sát thực trạng xã hội. Thời kỳ này Người chưa hoạt động chính trị tích cực.
+                  Sinh ra trong gia đình nông dân nghèo nhưng giàu truyền thống yêu nước, từ nhỏ Nguyễn Vịnh đã có tinh thần phản kháng với áp bức.
                 </ActivityDescription>
                 <ActivityDetails>
                   <ActivityDetail>
-                    Lao động kiếm sống trong thời kỳ chiến tranh
+                    Chứng kiến cảnh nông dân bị bóc lột, sớm hình thành tư tưởng đấu tranh
                   </ActivityDetail>
                   <ActivityDetail>
-                    Quan sát và tìm hiểu xã hội Pháp
+                    Tham gia phong trào cách mạng và gia nhập Đảng năm 1937
                   </ActivityDetail>
                   <ActivityDetail>
-                    Chuẩn bị nền tảng cho hoạt động chính trị sau chiến tranh
+                    Rèn luyện ý chí cách mạng trong nhà tù Lao Bảo
                   </ActivityDetail>
                 </ActivityDetails>
               </ActivityContent>
@@ -347,32 +413,25 @@ const Activities = () => {
 
             <ActivityCard>
               <ActivityHeader>
-                <ActivityYear>1919</ActivityYear>
+                <ActivityYear>1945-1954</ActivityYear>
                 <ActivityTitle>
                   <FaFlag />
-                  Bản yêu sách của nhân dân An Nam
+                  Kháng chiến chống Pháp
                 </ActivityTitle>
               </ActivityHeader>
               <ActivityContent>
                 <ActivityDescription>
-                  Gửi "Bản yêu sách của nhân dân An Nam" tới Hội nghị Versailles, yêu cầu các quyền tự do, 
-                  dân chủ cho nhân dân Việt Nam.
+                  Sau Cách mạng Tháng Tám, tham gia lãnh đạo phong trào cách mạng và xây dựng lực lượng vũ trang.
                 </ActivityDescription>
-                
-                <ActivityImageContainer>
-                   <img src="/images/versailles-petition-1919.jpg" alt="Bản yêu sách của nhân dân An Nam gửi tới Hội nghị Versailles" />
-                </ActivityImageContainer>
-                <ActivityImageCaption>Bản yêu sách của nhân dân An Nam gửi tới Hội nghị Versailles (1919)</ActivityImageCaption>
-                
                 <ActivityDetails>
                   <ActivityDetail>
-                    Lần đầu tiên tiếng nói chính thức của một người Việt Nam trên diễn đàn quốc tế
+                    Giữ chức Chính ủy Liên khu IV, xây dựng lực lượng tại chiến khu Việt Bắc
                   </ActivityDetail>
                   <ActivityDetail>
-                    Khẳng định ý chí độc lập và nhân quyền của dân tộc Việt Nam
+                    Chủ nhiệm Tổng cục Chính trị Quân đội Nhân dân Việt Nam
                   </ActivityDetail>
                   <ActivityDetail>
-                    Mở đầu cho con đường ngoại giao cách mạng của Hồ Chí Minh
+                    Cùng Đại tướng Võ Nguyên Giáp chỉ đạo chiến dịch Điện Biên Phủ lịch sử
                   </ActivityDetail>
                 </ActivityDetails>
               </ActivityContent>
@@ -380,25 +439,25 @@ const Activities = () => {
 
             <ActivityCard>
               <ActivityHeader>
-                <ActivityYear>Tháng 7/1920</ActivityYear>
+                <ActivityYear>1954-1964</ActivityYear>
                 <ActivityTitle>
                   <FaStar />
-                  Đọc Luận cương của Lenin
+                  Xây dựng Quân đội và phong trào thi đua
                 </ActivityTitle>
               </ActivityHeader>
               <ActivityContent>
                 <ActivityDescription>
-                  Nguyễn Ái Quốc đọc "Sơ thảo lần thứ nhất những luận cương về vấn đề dân tộc và vấn đề thuộc địa" của Lenin, đăng trên báo L'Humanité.
+                  Tập trung xây dựng Quân đội chính quy, hiện đại và khởi xướng phong trào "Thi đua Quyết thắng".
                 </ActivityDescription>
                 <ActivityDetails>
                   <ActivityDetail>
-                    Nhận ra con đường giải phóng dân tộc phải gắn liền với cách mạng vô sản
+                    Xây dựng Quân đội theo hướng chính quy, hiện đại
                   </ActivityDetail>
                   <ActivityDetail>
-                    Đánh dấu bước ngoặt lớn trong tư tưởng cách mạng
+                    Khởi xướng và lãnh đạo phong trào "Thi đua Quyết thắng"
                   </ActivityDetail>
                   <ActivityDetail>
-                    Hình thành nền tảng lý luận cho hoạt động cách mạng sau này
+                    Đào tạo cán bộ theo phương châm "vừa hồng vừa chuyên"
                   </ActivityDetail>
                 </ActivityDetails>
               </ActivityContent>
@@ -406,89 +465,25 @@ const Activities = () => {
 
             <ActivityCard>
               <ActivityHeader>
-                <ActivityYear>Tháng 12/1920</ActivityYear>
-                <ActivityTitle>
-                  <FaStar />
-                  Đại hội Tours
-                </ActivityTitle>
-              </ActivityHeader>
-              <ActivityContent>
-                <ActivityDescription>
-                  Nguyễn Ái Quốc tham dự Đại hội Tours của Đảng Xã hội Pháp và bỏ phiếu tán thành gia nhập Quốc tế Cộng sản.
-                </ActivityDescription>
-                <ActivityDetails>
-                  <ActivityDetail>
-                    Trở thành một trong những thành viên đầu tiên đi theo xu hướng cộng sản
-                  </ActivityDetail>
-                  <ActivityDetail>
-                    Đặt nền móng cho sự gắn bó giữa cách mạng Việt Nam và phong trào vô sản quốc tế
-                  </ActivityDetail>
-                  <ActivityDetail>
-                    Chính thức gia nhập phong trào cộng sản quốc tế
-                  </ActivityDetail>
-                </ActivityDetails>
-              </ActivityContent>
-            </ActivityCard>
-
-            <ActivityCard>
-              <ActivityHeader>
-                <ActivityYear>1921–1922</ActivityYear>
-                <ActivityTitle>
-                  <FaNewspaper />
-                  Hội Liên hiệp thuộc địa và báo Le Paria
-                </ActivityTitle>
-              </ActivityHeader>
-              <ActivityContent>
-                <ActivityDescription>
-                  Thành lập Hội Liên hiệp thuộc địa và sáng lập báo Le Paria (Người cùng khổ).
-                </ActivityDescription>
-                
-                <ActivityImageContainer>
-                  <img src="/images/le-paria-newspaper.jpg" alt="Báo Le Paria" />
-                </ActivityImageContainer>
-                <ActivityImageCaption>Báo Le Paria - Cơ quan ngôn luận của Hội Liên hiệp thuộc địa</ActivityImageCaption>
-                
-                <ActivityDetails>
-                  <ActivityDetail>
-                    Kết nối các dân tộc bị áp bức tại Pháp và châu Âu
-                  </ActivityDetail>
-                  <ActivityDetail>
-                    Kêu gọi đoàn kết các dân tộc thuộc địa chống lại áp bức
-                  </ActivityDetail>
-                  <ActivityDetail>
-                    Quảng bá tư tưởng giải phóng dân tộc gắn với phong trào cách mạng quốc tế
-                  </ActivityDetail>
-                  <ActivityDetail>
-                    Sử dụng báo chí như một vũ khí tuyên truyền mạnh mẽ
-                  </ActivityDetail>
-                </ActivityDetails>
-              </ActivityContent>
-            </ActivityCard>
-
-            <ActivityCard>
-              <ActivityHeader>
-                <ActivityYear>Cuối năm 1923</ActivityYear>
+                <ActivityYear>1964-1967</ActivityYear>
                 <ActivityTitle>
                   <FaUsers />
-                  Rời Pháp sang Liên Xô
+                  Chỉ đạo chiến trường miền Nam
                 </ActivityTitle>
               </ActivityHeader>
               <ActivityContent>
                 <ActivityDescription>
-                  Nguyễn Ái Quốc rời Paris sang Moscow, bắt đầu thời kỳ hoạt động tại Quốc tế Cộng sản.
+                  Được cử làm Bí thư Trung ương Cục miền Nam, trực tiếp chỉ đạo chiến trường chống Mỹ cứu nước.
                 </ActivityDescription>
                 <ActivityDetails>
                   <ActivityDetail>
-                    Bước vào giai đoạn chuẩn bị cho bước phát triển mới của cách mạng Việt Nam
+                    Đề ra chiến thuật "Nắm thắt lưng địch mà đánh" - linh hoạt và sáng tạo
                   </ActivityDetail>
                   <ActivityDetail>
-                    Hướng đến việc thành lập Đảng Cộng sản Việt Nam sau này
+                    Sống và chiến đấu cùng bộ đội, thấu hiểu tâm tư chiến sĩ
                   </ActivityDetail>
                   <ActivityDetail>
-                    Hoàn thành giai đoạn học tập và trưởng thành tại Pháp
-                  </ActivityDetail>
-                  <ActivityDetail>
-                    Chuẩn bị cho sứ mệnh lịch sử tại quê hương
+                    Góp phần làm thay đổi cục diện chiến tranh, tiến tới thắng lợi cuối cùng
                   </ActivityDetail>
                 </ActivityDetails>
               </ActivityContent>
@@ -499,53 +494,152 @@ const Activities = () => {
 
       <HeritageSection>
         <TimelineContainer>
-          <HeritageTitle>Di sản lịch sử</HeritageTitle>
+          <HeritageTitle>Di sản và hình ảnh</HeritageTitle>
           <HeritageGrid>
             <HeritageCard>
               <HeritageImageContainer>
-                <img src="/images/ho-chi-minh-communist-party-france.jpg" alt="Hồ Chí Minh và Đảng Cộng sản Pháp" />
+                <Image 
+                  src="/images/nguyen-chi-thanh-with-soldiers.jpg" 
+                  alt="Đại tướng Nguyễn Chí Thanh cùng chiến sĩ"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
               </HeritageImageContainer>
               <HeritageCaption>
-                <HeritageCaptionTitle>Hồ Chí Minh và Đảng Cộng sản Pháp</HeritageCaptionTitle>
+                <HeritageCaptionTitle>Đại tướng cùng chiến sĩ</HeritageCaptionTitle>
                 <HeritageCaptionText>
-                  Bác Hồ cùng các đồng chí trong Đảng Cộng sản Pháp, nơi Người học hỏi và phát triển tư tưởng Marxism-Leninism.
+                  Đại tướng Nguyễn Chí Thanh luôn sống và chiến đấu cùng bộ đội, thể hiện phong cách lãnh đạo gần gũi, sâu sát.
                 </HeritageCaptionText>
               </HeritageCaption>
             </HeritageCard>
             
             <HeritageCard>
               <HeritageImageContainer>
-                <img src="/images/ho-chi-minh-writing.jpg" alt="Hồ Chí Minh viết báo" />
+                <Image 
+                  src="/images/nguyen-chi-thanh-battlefield.jpg" 
+                  alt="Đại tướng tại chiến trường"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
               </HeritageImageContainer>
               <HeritageCaption>
-                <HeritageCaptionTitle>Hồ Chí Minh viết báo</HeritageCaptionTitle>
+                <HeritageCaptionTitle>Tại chiến trường miền Nam</HeritageCaptionTitle>
                 <HeritageCaptionText>
-                  Hình ảnh Bác Hồ chăm chú viết báo, truyền bá tư tưởng cách mạng và kêu gọi đoàn kết các dân tộc bị áp bức.
+                  Hình ảnh Đại tướng chỉ đạo chiến đấu tại miền Nam, nơi ông dành trọn tâm huyết cho sự nghiệp giải phóng.
                 </HeritageCaptionText>
               </HeritageCaption>
             </HeritageCard>
-            
-           
           </HeritageGrid>
         </TimelineContainer>
       </HeritageSection>
 
+      <GallerySection>
+        <TimelineContainer>
+          <SectionTitle>Thư Viện Hình Ảnh</SectionTitle>
+          <GalleryGrid>
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-legacy-1.jpg" 
+                  alt="Di sản vật chất"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Di sản vật chất</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Bảo tàng và các công trình kỷ niệm Đại tướng Nguyễn Chí Thanh.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
+
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-legacy-2.jpg" 
+                  alt="Tác phẩm nghiên cứu"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Tác phẩm nghiên cứu</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Các sách, tài liệu nghiên cứu về cuộc đời và sự nghiệp của Đại tướng.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
+
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-legacy-3.jpg" 
+                  alt="Phong trào thanh niên"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Ảnh hưởng thế hệ trẻ</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Phong trào học tập và noi gương Đại tướng trong thanh niên.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
+
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-legacy-4.jpg" 
+                  alt="Tượng đài kỷ niệm"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Tượng đài kỷ niệm</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Tượng đài Đại tướng Nguyễn Chí Thanh tại các địa phương.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
+
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-legacy-5.jpg" 
+                  alt="Lễ tưởng niệm"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Lễ tưởng niệm</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Các hoạt động tưởng niệm và tri ân công lao của Đại tướng.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
+          </GalleryGrid>
+        </TimelineContainer>
+      </GallerySection>
+
       <ConclusionSection>
         <TimelineContainer>
-          <ConclusionTitle>Kết luận và ý nghĩa lịch sử</ConclusionTitle>
+          <ConclusionTitle>Ý nghĩa lịch sử và di sản</ConclusionTitle>
           <ConclusionText>
-            Hành trình Hồ Chí Minh tại Pháp không chỉ là một chuyến đi học hỏi, quan sát, mà thực sự là một 
-            bước ngoặt lịch sử làm thay đổi vận mệnh cách mạng Việt Nam.
+            Đại tướng Nguyễn Chí Thanh là một trong những nhà lãnh đạo quân sự - chính trị kiệt xuất của Đảng và Quân đội, 
+            người đã cống hiến trọn đời cho sự nghiệp cách mạng của dân tộc.
           </ConclusionText>
           <ConclusionText>
-            Trong thời kỳ này, Người đã đặt những viên gạch nền móng đầu tiên cho tư tưởng cách mạng giải phóng dân tộc 
-            và lựa chọn con đường độc lập dân tộc gắn liền với chủ nghĩa xã hội – một định hướng mang tính quyết định 
-            cho thắng lợi của cách mạng Việt Nam sau này.
+            Tư tưởng "toàn dân đánh giặc", phong cách lãnh đạo gần gũi nhân dân, và tinh thần "vừa hồng vừa chuyên" 
+            của ông vẫn còn nguyên giá trị, là nguồn cảm hứng cho các thế hệ cán bộ, chiến sĩ và nhân dân Việt Nam.
           </ConclusionText>
           <ConclusionText style={{ fontWeight: '600', fontSize: '1.2rem' }}>
-            "Từ một thanh niên yêu nước, Nguyễn Tất Thành đã trưởng thành thành Nguyễn Ái Quốc - 
-            một chiến sĩ cộng sản quốc tế, người sáng lập ra Đảng Cộng sản Việt Nam và lãnh đạo dân tộc 
-            ta giành được độc lập, tự do."
+            "Đại tướng Nguyễn Chí Thanh - Vị tướng của lòng dân, người chiến sĩ suốt đời vì nước, vì dân, 
+            để lại cho chúng ta những giá trị tinh thần vô giá và tấm gương sáng mãi về lòng trung thành với Đảng, 
+            với Tổ quốc và nhân dân."
           </ConclusionText>
         </TimelineContainer>
       </ConclusionSection>

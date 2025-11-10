@@ -28,17 +28,17 @@ function App() {
         
         {/* AI ChatBot - Always available across all pages */}
         <ChatBox
-          title="Trợ lý Lịch sử Hồ Chí Minh"
-          subtitle="Chuyên gia AI về hành trình tại Pháp"
+          title="Trợ lý Lịch sử Đại tướng Nguyễn Chí Thanh"
+          subtitle="Chuyên gia AI về cuộc đời và sự nghiệp"
           primaryColor="#1976d2"
-          initialMessage="Xin chào! Tôi là trợ lý AI chuyên về lịch sử Hồ Chí Minh tại Pháp (1911-1923). 
+          initialMessage="Xin chào! Tôi là trợ lý AI chuyên về cuộc đời và sự nghiệp của Đại tướng Nguyễn Chí Thanh (1914-1967). 
 
 Tôi có thể giúp bạn tìm hiểu về:
-• Hành trình ra đi năm 1911
-• Cuộc sống và hoạt động tại Pháp
-• Quá trình hình thành tư tưởng cách mạng
-• Các tác phẩm và bài viết quan trọng
-• Ý nghĩa lịch sử của giai đoạn này
+• Cuộc đời và con đường cách mạng
+• Sự nghiệp quân sự và đóng góp lịch sử
+• Tư tưởng toàn dân đánh giặc
+• Phong cách lãnh đạo và di sản
+• Ý nghĩa lịch sử của Đại tướng
 
 Bạn muốn tìm hiểu về khía cạnh nào?"
         />

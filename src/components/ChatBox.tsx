@@ -60,7 +60,7 @@ const ChatHeader = styled(Box)`
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('/images/ho-chi-minh-young.jpg') center/cover;
+    background: url('/images/nguyen-chi-thanh-portrait.jpg') center/cover;
     opacity: 0.1;
   }
 `;
@@ -153,9 +153,9 @@ interface ChatBoxProps {
 
 const ChatBox = ({
   title = "Trợ lý Lịch sử",
-  subtitle = "Chuyên gia về Hồ Chí Minh",
+  subtitle = "Chuyên gia về Đại tướng Nguyễn Chí Thanh",
   primaryColor = "#1976d2",
-  initialMessage = "Xin chào! Tôi là trợ lý AI chuyên về lịch sử Hồ Chí Minh tại Pháp (1911-1923). Tôi có thể giúp bạn tìm hiểu về hành trình lịch sử này. Bạn muốn biết điều gì?"
+  initialMessage = "Xin chào! Tôi là trợ lý AI chuyên về lịch sử Đại tướng Nguyễn Chí Thanh (1914-1967). Tôi có thể giúp bạn tìm hiểu về cuộc đời, sự nghiệp và tư tưởng của Đại tướng. Bạn muốn biết điều gì?"
 }: ChatBoxProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -232,7 +232,7 @@ const ChatBox = ({
       
       const errorMessage: ChatMessage = {
         role: 'assistant',
-        content: 'Xin lỗi, hiện tại tôi gặp sự cố kỹ thuật. Vui lòng thử lại sau ít phút. Trong thời gian chờ đợi, bạn có thể khám phá các trang khác của website để tìm hiểu thêm về hành trình Hồ Chí Minh tại Pháp.',
+        content: 'Xin lỗi, hiện tại tôi gặp sự cố kỹ thuật. Vui lòng thử lại sau ít phút. Trong thời gian chờ đợi, bạn có thể khám phá các trang khác của website để tìm hiểu thêm về Đại tướng Nguyễn Chí Thanh.',
         timestamp: Date.now()
       };
       
@@ -268,7 +268,7 @@ const ChatBox = ({
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
-          <Tooltip title="Trò chuyện với AI về lịch sử Hồ Chí Minh" placement="left">
+          <Tooltip title="Trò chuyện với AI về Đại tướng Nguyễn Chí Thanh" placement="left">
             <IconButton
               onClick={() => setIsOpen(true)}
               sx={{
@@ -376,7 +376,7 @@ const ChatBox = ({
             <InputContainer>
               <StyledTextField
                 fullWidth
-                placeholder="Hỏi về hành trình Hồ Chí Minh tại Pháp..."
+                placeholder="Hỏi về Đại tướng Nguyễn Chí Thanh..."
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}

@@ -275,12 +275,12 @@ const About = () => {
     {
       name: "Dương Hồng Ân",
       role: "Content Manager & Historical Research",
-      description: "Thu thập và biên tập nội dung lịch sử, đảm bảo tính chính xác của thông tin về Hồ Chí Minh và giai đoạn ở Pháp."
+      description: "Thu thập và biên tập nội dung lịch sử, đảm bảo tính chính xác của thông tin về Đại tướng Nguyễn Chí Thanh."
     },
     {
       name: "Dương Thái Hoàng Nghĩa",
       role: "Content Manager & Historical Research",
-      description: "Thu thập và biên tập nội dung lịch sử, đảm bảo tính chính xác của thông tin về Hồ Chí Minh và giai đoạn ở Pháp."
+      description: "Thu thập và biên tập nội dung lịch sử, đảm bảo tính chính xác của thông tin về Đại tướng Nguyễn Chí Thanh."
     }
   ];
 
@@ -328,7 +328,7 @@ const About = () => {
       name: "Groq API",
       icon: FaRobot,
       color: "#FF6B35",
-      description: "AI chatbot engine tích hợp vào website, cung cấp thông tin về Hồ Chí Minh cho người dùng"
+      description: "AI chatbot engine tích hợp vào website, cung cấp thông tin về Đại tướng Nguyễn Chí Thanh cho người dùng"
     }
   ];
 
@@ -338,7 +338,7 @@ const About = () => {
         <HeroContent>
           <HeroTitle>Về dự án</HeroTitle>
           <HeroDescription>
-            Website tưởng niệm hành trình Hồ Chí Minh tại Pháp (1911-1923) - 
+            Website tưởng niệm Đại tướng Nguyễn Chí Thanh (1914-1967) - 
             Được xây dựng bởi nhóm phát triển với công nghệ hiện đại và sự hỗ trợ của AI
           </HeroDescription>
         </HeroContent>
@@ -363,10 +363,10 @@ const About = () => {
           <ProjectInfo>
             <ProjectTitle>Về dự án này</ProjectTitle>
             <ProjectText>
-              Website "Hồ Chí Minh tại Pháp" là một dự án giáo dục nhằm tưởng niệm và lan tỏa 
-              những giá trị lịch sử quan trọng về giai đoạn hình thành tư tưởng cách mạng của 
-              Chủ tịch Hồ Chí Minh. Dự án được phát triển với mong muốn mang đến cho người dùng 
-              trải nghiệm học tập lịch sử sinh động, tương tác và hiện đại.
+              Website "Đại tướng Nguyễn Chí Thanh - Người chiến sĩ của nhân dân" là một dự án giáo dục 
+              nhằm tưởng niệm và lan tỏa những giá trị lịch sử quan trọng về cuộc đời, sự nghiệp và 
+              tư tưởng của Đại tướng Nguyễn Chí Thanh. Dự án được phát triển với mong muốn mang đến 
+              cho người dùng trải nghiệm học tập lịch sử sinh động, tương tác và hiện đại.
             </ProjectText>
           </ProjectInfo>
         </Container>

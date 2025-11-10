@@ -28,7 +28,7 @@ export const sendMessageToAI = async (
       return await sendToOpenAI(messages, apiKey);
     } else {
       // Fallback to mock response for development/testing
-      return getHoChiMinhMockResponse(message);
+      return getNguyenChiThanhMockResponse(message);
     }
   } catch (error) {
     console.error("Error in sendMessageToAI:", error);
@@ -87,43 +87,43 @@ const sendToOpenAI = async (messages: any[], apiKey: string): Promise<string> =>
   return data.choices?.[0]?.message?.content || 'Không có nội dung trả về từ AI.';
 };
 
-// Mock responses for testing offline - specific to Ho Chi Minh historical content
-const getHoChiMinhMockResponse = (message: string): string => {
+// Mock responses for testing offline - specific to General Nguyen Chi Thanh historical content
+const getNguyenChiThanhMockResponse = (message: string): string => {
   const lowerMsg = message.toLowerCase();
   
   // Greetings
   if (lowerMsg.includes('xin chào') || lowerMsg.includes('hello') || lowerMsg.includes('chào')) {
-    return 'Xin chào! Tôi là trợ lý AI chuyên về lịch sử Hồ Chí Minh. Tôi có thể giúp bạn tìm hiểu về hành trình của Bác tại Pháp từ 1911-1923. Bạn muốn biết điều gì?';
+    return 'Xin chào! Tôi là trợ lý AI chuyên về lịch sử Đại tướng Nguyễn Chí Thanh. Tôi có thể giúp bạn tìm hiểu về cuộc đời và sự nghiệp của Đại tướng (1914-1967). Bạn muốn biết điều gì?';
   }
   
-  // Questions about departure/journey
-  if (lowerMsg.includes('ra đi') || lowerMsg.includes('xuất cảnh') || lowerMsg.includes('1911')) {
-    return 'Năm 1911, Nguyễn Tất Thành rời Việt Nam tại cảng Nhà Rồng (Sài Gòn) với ý định tìm đường cứu nước. Lúc đó Người mới 21 tuổi, làm phụ bếp trên tàu Amiral Latouche-Tréville với tên Ba (được gọi là Văn Ba).';
+  // Questions about early life/biography
+  if (lowerMsg.includes('sinh') || lowerMsg.includes('tuổi thơ') || lowerMsg.includes('1914')) {
+    return 'Đại tướng Nguyễn Chí Thanh sinh ngày 20/2/1914 tại làng An Hóa, xã Tam Hiệp, huyện Phong Điền, tỉnh Thừa Thiên (nay là Thừa Thiên Huế). Bản danh là Nguyễn Vịnh, sinh trong gia đình nông dân nghèo nhưng giàu truyền thống yêu nước.';
   }
   
-  // Questions about France period
-  if (lowerMsg.includes('pháp') || lowerMsg.includes('paris') || lowerMsg.includes('versailles')) {
-    return 'Tại Pháp, Hồ Chí Minh đã trải qua nhiều giai đoạn quan trọng: làm thợ ảnh, viết báo, tham gia hoạt động chính trị. Điểm nhấn lớn là việc gửi "Bản yêu sách của nhân dân An Nam" tại Hội nghị Versailles 1919 và gia nhập Đảng Cộng sản Pháp năm 1920.';
+  // Questions about military career
+  if (lowerMsg.includes('quân sự') || lowerMsg.includes('chiến công') || lowerMsg.includes('chiến trường')) {
+    return 'Đại tướng Nguyễn Chí Thanh có những đóng góp to lớn trong cả hai cuộc kháng chiến. Ông là Chủ nhiệm Tổng cục Chính trị Quân đội, tham gia chỉ đạo chiến dịch Điện Biên Phủ, và sau đó là Bí thư Trung ương Cục miền Nam, chỉ đạo chiến trường chống Mỹ.';
   }
   
-  // Questions about Communist Party
-  if (lowerMsg.includes('cộng sản') || lowerMsg.includes('đảng') || lowerMsg.includes('1920')) {
-    return 'Năm 1920, Hồ Chí Minh gia nhập Đảng Cộng sản Pháp sau khi đọc "Sơ thảo luận cương về vấn đề dân tộc và thuộc địa" của Lenin. Đây là bước ngoặt quan trọng trong việc hình thành tư tưởng cách mạng của Người.';
+  // Questions about ideology/thought
+  if (lowerMsg.includes('tư tưởng') || lowerMsg.includes('toàn dân') || lowerMsg.includes('chiến tranh nhân dân')) {
+    return 'Tư tưởng "toàn dân đánh giặc" là di sản quan trọng của Đại tướng. Ông khẳng định sức mạnh chiến tranh nhân dân, kết hợp toàn bộ lực lượng vũ trang với lực lượng chính trị, xây dựng thế trận lòng dân vững chắc.';
   }
   
-  // Questions about writings/journalism
-  if (lowerMsg.includes('báo') || lowerMsg.includes('viết') || lowerMsg.includes('le paria')) {
-    return 'Hồ Chí Minh đã viết báo tại Pháp, đặc biệt là báo "Le Paria" (Người cùng khổ) từ 1922-1923. Qua báo chí, Người kêu gọi đoàn kết các dân tộc thuộc địa chống lại ách áp bức thực dân.';
+  // Questions about leadership style
+  if (lowerMsg.includes('lãnh đạo') || lowerMsg.includes('phong cách') || lowerMsg.includes('gần gũi')) {
+    return 'Đại tướng Nguyễn Chí Thanh nổi tiếng với phong cách lãnh đạo gần gũi, sâu sát cơ sở. Ông luôn sống và chiến đấu cùng bộ đội, thấu hiểu tâm tư nguyện vọng của chiến sĩ và nhân dân.';
   }
   
-  // Questions about impact/influence
-  if (lowerMsg.includes('ảnh hưởng') || lowerMsg.includes('tác động') || lowerMsg.includes('ý nghĩa')) {
-    return 'Hành trình tại Pháp có ý nghĩa quyết định trong việc hình thành nhân cách và tư tưởng cách mạng của Hồ Chí Minh. Từ một thanh niên yêu nước, Người đã trở thành một chiến sĩ cộng sản quốc tế với con đường cứu nước rõ ràng.';
+  // Questions about impact/legacy
+  if (lowerMsg.includes('di sản') || lowerMsg.includes('ý nghĩa') || lowerMsg.includes('ảnh hưởng')) {
+    return 'Di sản của Đại tướng Nguyễn Chí Thanh vẫn còn nguyên giá trị: tư tưởng chiến tranh nhân dân, phong cách lãnh đạo gần gũi quần chúng, và tinh thần "vừa hồng vừa chuyên" trong xây dựng quân đội. Ông là tấm gương sáng về lòng trung thành với Đảng, với Tổ quốc và nhân dân.';
   }
   
   // Default response for off-topic or unclear questions
   if (lowerMsg.includes('thời tiết') || lowerMsg.includes('thể thao') || lowerMsg.includes('giải trí')) {
-    return 'Tôi chuyên về lịch sử Hồ Chí Minh, đặc biệt là giai đoạn tại Pháp (1911-1923). Bạn có muốn tìm hiểu về hành trình ra đi, các hoạt động tại Pháp, hay quá trình hình thành tư tưởng cách mạng của Bác không?';
+    return 'Tôi chuyên về lịch sử Đại tướng Nguyễn Chí Thanh (1914-1967). Bạn có muốn tìm hiểu về cuộc đời, sự nghiệp quân sự, tư tưởng lãnh đạo hay di sản của Đại tướng không?';
   }
   
   return `Cảm ơn bạn đã hỏi về "${message}". Tôi có thể giúp bạn tìm hiểu về:

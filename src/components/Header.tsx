@@ -106,10 +106,10 @@ const Header: React.FC = () => {
   const location = useLocation();
 
   const menuItems = [
-    { path: '/', label: 'Giới thiệu' },
-    { path: '/historical-context', label: 'Hoàn cảnh lịch sử' },
-    { path: '/journey', label: 'Hành trình (1911-1917)' },
-    { path: '/activities', label: 'Hoạt động (1917-1923)' },
+    { path: '/', label: 'Trang Chủ' },
+    { path: '/journey', label: 'Tiểu Sử & Sự Nghiệp' },
+    { path: '/historical-context', label: 'Tư Tưởng & Phong Cách Lãnh Đạo' },
+    { path: '/activities', label: 'Di Sản & Hình Ảnh' },
     { path: '/about', label: 'Về dự án' }
   ];
 
@@ -125,7 +125,7 @@ const Header: React.FC = () => {
     <HeaderWrapper>
       <Nav>
         <Logo to="/" onClick={closeMenu}>
-          Hồ Chí Minh tại Pháp
+          Đại tướng Nguyễn Chí Thanh
         </Logo>
         
         <MenuToggle onClick={toggleMenu}>

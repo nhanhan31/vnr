@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaIndustry, FaUsers, FaExclamationTriangle } from 'react-icons/fa';
+import { Image } from 'antd';
+import 'antd/dist/reset.css';
 
 const HistoricalContextContainer = styled.div`
   min-height: 100vh;
@@ -247,6 +249,70 @@ const ImageCaption = styled.div`
   font-weight: 500;
 `;
 
+const GallerySection = styled.section`
+  padding: 4rem 0;
+  background: #f8f9fa;
+`;
+
+const GalleryGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+`;
+
+const GalleryCard = styled.div`
+  background: white;
+  border-radius: ${props => props.theme.borderRadius.lg};
+  overflow: hidden;
+  box-shadow: ${props => props.theme.shadows.md};
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: ${props => props.theme.shadows.lg};
+  }
+`;
+
+const GalleryImage = styled.div`
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.1);
+  }
+`;
+
+const GalleryCaption = styled.div`
+  padding: 1.5rem;
+`;
+
+const GalleryCaptionTitle = styled.h4`
+  color: ${props => props.theme.colors.text};
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+`;
+
+const GalleryCaptionText = styled.p`
+  color: ${props => props.theme.colors.textLight};
+  font-size: 0.85rem;
+  line-height: 1.5;
+`;
+
 const PatrioticMovementImages = styled.div`
   margin: 3rem 0;
 `;
@@ -291,188 +357,290 @@ const HistoricalContext: React.FC = () => {
     <HistoricalContextContainer className="fade-in">
       <HeroSection>
         <HeroContent>
-          <HeroTitle>Hoàn cảnh lịch sử</HeroTitle>
+          <HeroTitle>Tư Tưởng & Phong Cách Lãnh Đạo</HeroTitle>
           <HeroDescription>
-            Bối cảnh Việt Nam và thế giới đầu thế kỷ XX - Những nhân tố quyết định đến quyết định ra đi tìm đường cứu nước của Nguyễn Tất Thành
+            Phân tích sâu về triết lý sống, phong cách lãnh đạo và giá trị tư tưởng mà Đại tướng Nguyễn Chí Thanh để lại cho hậu thế
           </HeroDescription>
         </HeroContent>
       </HeroSection>
 
       <ContentSection>
         <ContentContainer>
-          <SectionTitle>Tình hình Việt Nam đầu thế kỷ XX</SectionTitle>
+          <SectionTitle>Tư tưởng "toàn dân đánh giặc"</SectionTitle>
           <p style={{ textAlign: 'center', marginBottom: '3rem', fontSize: '1.1rem', color: '#6C757D' }}>
-            Đầu thế kỷ XX, đất nước Việt Nam đang chìm trong ách thống trị nặng nề của thực dân Pháp
+            Đại tướng Nguyễn Chí Thanh cho rằng sức mạnh của cách mạng đến từ nhân dân. Ông khẳng định tư tưởng quan trọng về chiến tranh nhân dân.
           </p>
           
           <ContextImageSection>
             <ContextImage>
-              <img src="/images/vietnam-colonial-period.jpg" alt="Việt Nam thời kỳ thực dân" />
-              <ImageCaption>Việt Nam dưới sự thống trị của thực dân Pháp đầu thế kỷ XX</ImageCaption>
+              <Image 
+                src="/images/nguyen-chi-thanh-with-people.jpg" 
+                alt="Đại tướng Nguyễn Chí Thanh cùng nhân dân"
+                preview={{ mask: 'Xem ảnh' }}
+                style={{ width: '100%', height: '300px', objectFit: 'cover' }}
+              />
+              <ImageCaption>Đại tướng Nguyễn Chí Thanh luôn gắn bó mật thiết với nhân dân</ImageCaption>
             </ContextImage>
           </ContextImageSection>
           
           <VietnamSituationGrid>
             <SituationCard>
               <CardIcon><FaUsers /></CardIcon>
-              <CardTitle>Chính trị</CardTitle>
+              <CardTitle>Tư tưởng nhân dân</CardTitle>
               <CardDescription>
-                Bộ máy cai trị thực dân – phong kiến kìm hãm, chèn ép mọi phong trào yêu nước. 
-                Quyền lực tập trung trong tay thực dân Pháp và tầng lớp phong kiến thân Pháp.
+                "Không có nhân dân thì không có cách mạng. Nhân dân là gốc rễ của kháng chiến và chiến thắng." - 
+                Tư tưởng này góp phần hình thành chiến lược chiến tranh nhân dân.
               </CardDescription>
             </SituationCard>
 
             <SituationCard>
               <CardIcon><FaIndustry /></CardIcon>
-              <CardTitle>Kinh tế</CardTitle>
+              <CardTitle>Phong cách lãnh đạo</CardTitle>
               <CardDescription>
-                Người dân bị bóc lột tàn bạo thông qua sưu cao, thuế nặng; ruộng đất tập trung trong tay địa chủ và thực dân. 
-                Nền kinh tế phục vụ cho lợi ích của Pháp.
+                Ông nổi tiếng là người "nói ít, làm nhiều", luôn xuống cơ sở, ăn cùng chiến sĩ, sống như người lính. 
+                "Ông không ngồi bàn chỉ huy xa xôi; ông sống ngay trong chiến hào cùng bộ đội."
               </CardDescription>
             </SituationCard>
 
             <SituationCard>
               <CardIcon><FaExclamationTriangle /></CardIcon>
-              <CardTitle>Xã hội</CardTitle>
+              <CardTitle>Vừa hồng vừa chuyên</CardTitle>
               <CardDescription>
-                Đời sống nhân dân cực khổ, đói nghèo triền miên; văn hóa, giáo dục bị thực dân kìm hãm, 
-                nhằm phục vụ chính sách nô dịch và duy trì sự thống trị.
+                Ông luôn nhấn mạnh cán bộ cách mạng phải có đạo đức cách mạng (hồng) và năng lực chuyên môn (chuyên). 
+                Quan điểm xây dựng con người mới xã hội chủ nghĩa vẫn còn nguyên giá trị.
               </CardDescription>
             </SituationCard>
           </VietnamSituationGrid>
 
           <MovementSection>
-            <MovementTitle>Các phong trào yêu nước và thất bại</MovementTitle>
+            <MovementTitle>Tinh thần "Dám nghĩ – Dám làm – Dám chịu trách nhiệm"</MovementTitle>
             <p style={{ textAlign: 'center', marginBottom: '2rem', color: '#6C757D' }}>
-              Trong bối cảnh đó, nhiều phong trào yêu nước đã nổ ra nhưng đều thất bại:
+              Đại tướng luôn khuyến khích đổi mới, sáng tạo trong chỉ đạo chiến đấu, dám quyết đoán khi cần thiết:
             </p>
             
             <MovementList>
               <MovementItem>
-                <MovementName>Phong trào Cần Vương</MovementName>
-                <MovementPeriod>(1885–1896)</MovementPeriod>
+                <MovementName>Chiến thuật linh hoạt</MovementName>
+                <MovementPeriod>"Nắm thắt lưng địch mà đánh"</MovementPeriod>
                 <MovementDescription>
-                  Do các sĩ phu văn thân lãnh đạo, kêu gọi "phò vua đuổi giặc". Tuy có tinh thần yêu nước cao 
-                  nhưng thất bại vì lực lượng phân tán, thiếu tổ chức thống nhất và vũ khí lạc hậu.
+                  Đại tướng đề ra chiến thuật "Nắm thắt lưng địch mà đánh" - tiếp cận sát địch, vận động linh hoạt, 
+                  đánh vào điểm yếu. Không theo sách vở máy móc mà sáng tạo dựa trên thực tiễn chiến trường.
                 </MovementDescription>
               </MovementItem>
 
               <MovementItem>
-                <MovementName>Phong trào Đông Du</MovementName>
-                <MovementPeriod>(1905–1909)</MovementPeriod>
+                <MovementName>Phong trào Thi đua Quyết thắng</MovementName>
+                <MovementPeriod>(Khởi xướng 1956)</MovementPeriod>
                 <MovementDescription>
-                  Do Phan Bội Châu khởi xướng, đưa thanh niên sang Nhật Bản học tập quân sự và khoa học. 
-                  Song bị chính quyền Nhật Bản trục xuất vì lợi ích quan hệ với Pháp.
+                  Phong trào thi đua do Đại tướng khởi xướng, khuyến khích tinh thần đổi mới, sáng tạo trong huấn luyện 
+                  và chiến đấu. Tạo động lực mạnh mẽ cho quân đội vươn lên hoàn thành nhiệm vụ.
                 </MovementDescription>
               </MovementItem>
 
               <MovementItem>
-                <MovementName>Phong trào Duy Tân</MovementName>
-                <MovementPeriod>(1906–1908)</MovementPeriod>
+                <MovementName>Dám chịu trách nhiệm</MovementName>
+                <MovementPeriod>(Suốt sự nghiệp)</MovementPeriod>
                 <MovementDescription>
-                  Do Phan Chu Trinh lãnh đạo, kêu gọi cải cách ôn hòa, học tập văn minh phương Tây. 
-                  Nhưng không được thực dân Pháp chấp nhận và bị đàn áp dữ dội.
+                  Ông luôn đứng ra gánh vác trách nhiệm trong những quyết định quan trọng, đặc biệt khi nhận nhiệm vụ 
+                  chỉ đạo chiến trường miền Nam - nhiệm vụ nặng nề và đầy thử thách.
                 </MovementDescription>
               </MovementItem>
             </MovementList>
             
-            <div style={{ textAlign: 'center', marginTop: '2rem', fontStyle: 'italic', color: '#DC143C' }}>
-              <strong>Tất cả các con đường cứu nước trên đều thất bại, để lại một khoảng trống về phương hướng và niềm tin.</strong>
-            </div>
-            
             <PatrioticMovementImages>
               <MovementImageGrid>
                 <MovementImageCard>
-                  <img src="/images/can-vuong-movement.jpg" alt="Phong trào Cần Vương" />
-                  <MovementCaption>Phong trào Cần Vương (1885-1896)</MovementCaption>
+                  <Image 
+                    src="/images/nguyen-chi-thanh-leadership.jpg" 
+                    alt="Đại tướng chỉ đạo chiến đấu"
+                    preview={{ mask: 'Xem ảnh' }}
+                    style={{ width: '100%', height: '250px', objectFit: 'cover' }}
+                  />
+                  <MovementCaption>Đại tướng Nguyễn Chí Thanh chỉ đạo chiến đấu</MovementCaption>
                 </MovementImageCard>
                 <MovementImageCard>
-                  <img src="/images/dong-du-movement.jpg" alt="Phong trào Đông Du" />
-                  <MovementCaption>Phong trào Đông Du (1905-1909)</MovementCaption>
+                  <Image 
+                    src="/images/nguyen-chi-thanh-training.jpg" 
+                    alt="Đại tướng và phong trào thi đua"
+                    preview={{ mask: 'Xem ảnh' }}
+                    style={{ width: '100%', height: '250px', objectFit: 'cover' }}
+                  />
+                  <MovementCaption>Phong trào "Thi đua Quyết thắng"</MovementCaption>
                 </MovementImageCard>
               </MovementImageGrid>
             </PatrioticMovementImages>
           </MovementSection>
 
           <GlobalInfluenceSection>
-            <SectionTitle>Ảnh hưởng quốc tế</SectionTitle>
+            <SectionTitle>Ảnh hưởng và di sản</SectionTitle>
             <p style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '1.1rem', color: '#6C757D' }}>
-              Trong khi Việt Nam chìm trong khổ nạn, thế giới đầu thế kỷ XX lại có nhiều biến động lớn:
+              Tư tưởng và phong cách lãnh đạo của Đại tướng Nguyễn Chí Thanh có tác động sâu rộng đến Quân đội và nhân dân:
             </p>
 
             <InfluenceGrid>
               <InfluenceCard>
-                <InfluenceTitle>Chủ nghĩa thực dân lan rộng</InfluenceTitle>
+                <InfluenceTitle>Xây dựng Quân đội nhân dân</InfluenceTitle>
                 <InfluenceText>
-                  Không chỉ Việt Nam, mà khắp châu Á và châu Phi đều bị các cường quốc phương Tây áp bức, 
-                  chia cắt, biến thành thuộc địa để phục vụ cho sự phát triển tư bản của chúng.
+                  Đóng góp quan trọng trong việc xây dựng Quân đội chính quy, hiện đại, trung thành tuyệt đối với Đảng, 
+                  với lòng dân. Phương châm "vừa hồng vừa chuyên" vẫn là nền tảng đào tạo cán bộ.
                 </InfluenceText>
               </InfluenceCard>
 
               <InfluenceCard>
-                <InfluenceTitle>Trào lưu tư tưởng tiến bộ</InfluenceTitle>
+                <InfluenceTitle>Tinh thần Quyết thắng</InfluenceTitle>
                 <InfluenceText>
-                  Ảnh hưởng từ cách mạng tư sản Pháp, Mỹ đem đến khẩu hiệu "tự do, bình đẳng, bác ái". 
-                  Tuy nhiên, những lý tưởng này không được áp dụng cho các dân tộc thuộc địa.
+                  Phong trào "Thi đua Quyết thắng" lan tỏa mạnh mẽ trong toàn quân, tạo động lực vượt khó, 
+                  hoàn thành xuất sắc mọi nhiệm vụ được giao.
                 </InfluenceText>
               </InfluenceCard>
 
               <InfluenceCard>
-                <InfluenceTitle>Phong trào công nhân quốc tế</InfluenceTitle>
+                <InfluenceTitle>Gương mẫu về phong cách</InfluenceTitle>
                 <InfluenceText>
-                  Sự ra đời của Quốc tế II, Quốc tế III khẳng định con đường đấu tranh của giai cấp vô sản. 
-                  Đặc biệt, Cách mạng Tháng Mười Nga (1917) mở ra kỷ nguyên mới.
+                  Là tấm gương sáng về lãnh đạo gần gũi cơ sở, sâu sát thực tiễn, luôn đặt lợi ích tập thể 
+                  lên trên lợi ích cá nhân, sống giản dị và gương mẫu.
                 </InfluenceText>
               </InfluenceCard>
             </InfluenceGrid>
 
             <div className="quote" style={{ margin: '3rem 0', textAlign: 'center' }}>
-              "Cách mạng Tháng Mười Nga (1917) – mở ra kỷ nguyên mới, báo hiệu rằng các dân tộc bị áp bức 
-              hoàn toàn có thể vùng lên giành độc lập thông qua con đường cách mạng vô sản."
+              "Đại tướng Nguyễn Chí Thanh - Người chiến sĩ cộng sản kiên trung, vị tướng tài của Quân đội nhân dân, 
+              người con ưu tú của dân tộc Việt Nam."
             </div>
           </GlobalInfluenceSection>
 
           <ReasonSection>
-            <ReasonTitle>Nguyên nhân ra đi tìm đường cứu nước</ReasonTitle>
+            <ReasonTitle>Giá trị tư tưởng và phong cách lãnh đạo</ReasonTitle>
             <p style={{ marginBottom: '2rem', opacity: '0.9' }}>
-              Trước bối cảnh đất nước và quốc tế, Nguyễn Tất Thành nhận thấy:
+              Đại tướng Nguyễn Chí Thanh để lại những giá trị quý báu:
             </p>
             
             <ReasonList>
               <ReasonItem>
-                <strong>Các con đường cứu nước cũ đều không hiệu quả:</strong> Đấu tranh vũ trang tự phát thất bại, 
-                con đường cầu viện Nhật hay cải lương ôn hòa cũng không thành công.
+                <strong>Tinh thần chiến đấu kiên cường:</strong> Luôn dũng cảm, quyết tâm cao trong mọi hoàn cảnh, 
+                không bao giờ lùi bước trước kẻ thù.
               </ReasonItem>
               
               <ReasonItem>
-                <strong>Khát vọng tìm một con đường mới:</strong> Một con đường khác biệt, độc lập, 
-                không lặp lại vết xe đổ của các phong trào đi trước.
+                <strong>Gần gũi với nhân dân và chiến sĩ:</strong> Sống giản dị, chia sẻ gian khổ cùng bộ đội, 
+                thấu hiểu và tin tưởng vào sức mạnh của quần chúng.
               </ReasonItem>
               
               <ReasonItem>
-                <strong>Tầm nhìn vượt ra ngoài biên giới:</strong> Người hiểu rằng muốn cứu nước không thể chỉ nhìn 
-                trong phạm vi Việt Nam, mà cần phải đi ra thế giới, tận mắt học hỏi và tìm kiếm giải pháp triệt để.
+                <strong>Tư duy đổi mới và sáng tạo:</strong> Luôn khuyến khích đổi mới trong chỉ đạo chiến đấu, 
+                dám nghĩ dám làm để tìm ra những giải pháp phù hợp với thực tiễn.
               </ReasonItem>
             </ReasonList>
           </ReasonSection>
 
           <ConclusionSection>
-            <h3 style={{ color: '#B8860B', marginBottom: '1.5rem' }}>Kết luận về bối cảnh</h3>
+            <h3 style={{ color: '#B8860B', marginBottom: '1.5rem' }}>Kết luận về di sản</h3>
             <p style={{ fontSize: '1.1rem', lineHeight: '1.8', textAlign: 'justify', marginBottom: '1.5rem' }}>
-              Hoàn cảnh lịch sử đầu thế kỷ XX đã đặt dân tộc Việt Nam trước ngõ cụt: đất nước bị đô hộ, 
-              nhân dân khốn khổ, phong trào yêu nước thất bại.
+              Đại tướng Nguyễn Chí Thanh là tấm gương sáng về người chiến sĩ cộng sản kiên cường, 
+              người lãnh đạo quân sự tài năng và người cán bộ chính trị có tầm nhìn xa.
             </p>
             <p style={{ fontSize: '1.1rem', lineHeight: '1.8', textAlign: 'justify', marginBottom: '1.5rem' }}>
-              Cùng lúc, thế giới lại dấy lên những tư tưởng tiến bộ và cách mạng, mở ra cơ hội tìm con đường giải phóng mới.
+              Tư tưởng và phong cách lãnh đạo của ông vẫn còn nguyên giá trị, là nguồn cảm hứng cho các thế hệ cán bộ, chiến sĩ và nhân dân.
             </p>
             <p style={{ fontSize: '1.1rem', lineHeight: '1.8', textAlign: 'justify', fontWeight: '600', color: '#DC143C' }}>
-              Trong bối cảnh đó, sự lựa chọn ra đi của Nguyễn Tất Thành là tất yếu và mang tính thời đại. 
-              Đây là điểm khởi đầu cho một hành trình tìm đường cứu nước độc lập, không lệ thuộc, 
-              và sau này đã thay đổi vận mệnh cả dân tộc.
+              Di sản mà Đại tướng để lại không chỉ là những chiến công hiển hách, mà còn là tinh thần yêu nước, 
+              tinh thần trách nhiệm và sự gần gũi với nhân dân - những giá trị vĩnh cửu của dân tộc Việt Nam.
             </p>
           </ConclusionSection>
         </ContentContainer>
       </ContentSection>
+
+      <GallerySection>
+        <ContentContainer>
+          <SectionTitle>Hình Ảnh Lịch Sử</SectionTitle>
+          <GalleryGrid>
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-ideology-1.jpg" 
+                  alt="Đại tướng và tư tưởng toàn dân"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Tư tưởng toàn dân đánh giặc</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Đại tướng tuyên truyền tư tưởng "toàn dân đánh giặc" trong quân đội và nhân dân.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
+
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-ideology-2.jpg" 
+                  alt="Phong cách lãnh đạo"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Phong cách lãnh đạo gần gũi</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Đại tướng luôn sâu sát, gần gũi với cơ sở và chiến sĩ.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
+
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-ideology-3.jpg" 
+                  alt="Vừa hồng vừa chuyên"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Vừa hồng vừa chuyên</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Đại tướng trong buổi đào tạo cán bộ theo phương châm "vừa hồng vừa chuyên".
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
+
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-ideology-4.jpg" 
+                  alt="Chỉ đạo tác chiến"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Dám nghĩ - Dám làm</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Đại tướng trong buổi chỉ đạo tác chiến, thể hiện tinh thần dám nghĩ dám làm.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
+
+            <GalleryCard>
+              <GalleryImage>
+                <Image 
+                  src="/images/nguyen-chi-thanh-ideology-5.jpg" 
+                  alt="Di sản tư tưởng"
+                  preview={{ mask: 'Xem ảnh' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </GalleryImage>
+              <GalleryCaption>
+                <GalleryCaptionTitle>Di sản tư tưởng</GalleryCaptionTitle>
+                <GalleryCaptionText>
+                  Các tác phẩm và bài viết của Đại tướng về xây dựng quân đội và chiến tranh nhân dân.
+                </GalleryCaptionText>
+              </GalleryCaption>
+            </GalleryCard>
+          </GalleryGrid>
+        </ContentContainer>
+      </GallerySection>
     </HistoricalContextContainer>
   );
 };

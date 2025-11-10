@@ -45,12 +45,17 @@ const Footer: React.FC = () => {
     <FooterWrapper>
       <FooterContent>
         <FooterText>
-          "Con đường cách mạng của dân tộc ta phải đi qua con đường giải phóng dân tộc, 
-          gắn liền với con đường giải phóng giai cấp"
+          "Kính dâng Đại tướng Nguyễn Chí Thanh – người chiến sĩ suốt đời vì nước, vì dân."
         </FooterText>
         <FooterDivider />
+        <FooterText style={{ fontSize: '0.9rem', marginTop: '1rem' }}>
+          <strong>Nguồn tham khảo:</strong><br />
+          • Bảo tàng Đại tướng Nguyễn Chí Thanh (Huế)<br />
+          • Báo Quân đội Nhân dân<br />
+          • VTV Đặc biệt – "Nguyễn Chí Thanh: Vị tướng của nhân dân"
+        </FooterText>
         <Copyright>
-          © {currentYear} - Hành trình Hồ Chí Minh tại Pháp (1911-1923)
+          © {currentYear} - Đại tướng Nguyễn Chí Thanh – Người chiến sĩ của nhân dân
         </Copyright>
       </FooterContent>
     </FooterWrapper>
