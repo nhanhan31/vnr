@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaNewspaper, FaUsers, FaFlag, FaStar, FaHandshake } from 'react-icons/fa';
+import { FaUsers, FaFlag, FaStar, FaHandshake } from 'react-icons/fa';
 import { Image } from 'antd';
 import 'antd/dist/reset.css';
 
@@ -153,41 +153,6 @@ const ActivityDetail = styled.li`
     font-size: 0.8rem;
     top: 0.1rem;
   }
-`;
-
-const ActivityImageContainer = styled.div`
-  margin: 1.5rem 0;
-  background: white;
-  border-radius: ${props => props.theme.borderRadius.md};
-  box-shadow: ${props => props.theme.shadows.sm};
-  overflow: hidden;
-  
-  img {
-    width: 100%;
-    height: 600px;
-    object-fit: cover;
-    display: block;
-  }
-  
-  /* Placeholder khi chưa có ảnh */
-  &:empty:before {
-    content: "Vị trí cho ảnh lịch sử";
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 200px;
-    color: ${props => props.theme.colors.textLight};
-    font-style: italic;
-    background: ${props => props.theme.colors.gradient.hero};
-  }
-`;
-
-const ActivityImageCaption = styled.div`
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: ${props => props.theme.colors.textLight};
-  text-align: center;
-  font-style: italic;
 `;
 
 const HeritageSection = styled.section`

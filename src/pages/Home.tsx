@@ -66,68 +66,6 @@ const SectionTitle = styled.h2`
   font-weight: 700;
 `;
 
-const TeamGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-`;
-
-const TeamCard = styled.div`
-  background: white;
-  border-radius: ${props => props.theme.borderRadius.lg};
-  padding: 2rem;
-  text-align: center;
-  box-shadow: ${props => props.theme.shadows.md};
-  transition: all 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: ${props => props.theme.shadows.lg};
-  }
-`;
-
-const TeamIcon = styled.div`
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: ${props => props.theme.colors.gradient.primary};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.5rem;
-  
-  svg {
-    font-size: 2rem;
-    color: white;
-  }
-`;
-
-const TeamName = styled.h3`
-  color: ${props => props.theme.colors.text};
-  margin-bottom: 0.5rem;
-  font-size: 1.3rem;
-  font-weight: 600;
-`;
-
-const TeamRole = styled.p`
-  color: ${props => props.theme.colors.primary};
-  font-weight: 500;
-  margin-bottom: 1rem;
-  font-size: 1rem;
-`;
-
-const TeamDescription = styled.p`
-  color: ${props => props.theme.colors.textLight};
-  font-size: 0.9rem;
-  line-height: 1.5;
-`;
-
 const TechSection = styled.div`
   background: ${props => props.theme.colors.surface};
   padding: 4rem 0;
@@ -245,13 +183,6 @@ const ProjectInfo = styled.div`
   margin: 3rem 0;
   box-shadow: ${props => props.theme.shadows.md};
   text-align: center;
-`;
-
-const ProjectTitle = styled.h3`
-  color: ${props => props.theme.colors.text};
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  font-weight: 600;
 `;
 
 const ProjectText = styled.p`
